@@ -8,6 +8,9 @@
 ## Gradle
 * [Groovy - '와 "의 차이](https://github.com/hongsii/TIL/blob/master/gradle/single-quote-and-double-quote-difference.md)
 
+## Bash
+* [터미널에서 사용 가능한 단축키](https://github.com/hongsii/TIL/blob/master/bash/bash-shortcut.md)
+
 ## 기타
 
 * [유용한 링크 정리](https://github.com/hongsii/TIL/blob/master/link.md)
