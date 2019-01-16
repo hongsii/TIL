@@ -1,13 +1,13 @@
 # 유용한 링크 정리
 
 ### Java 
-* 2018-01-06 [Understanding Memory Leaks in Java](https://www.baeldung.com/java-memory-leaks)
+* [Understanding Memory Leaks in Java](https://www.baeldung.com/java-memory-leaks)
 
 --------------------
 
 ### Vim
-* 2018-01-05 [Vim의 링크를 브라우저로 열기](https://stackoverflow.com/questions/9458294/open-url-under-cursor-in-vim-with-browser)
-* 2018-01-05 [Vim 자동완성 기능 사용하기](https://johngrib.github.io/wiki/vim-auto-completion/)
+* [Vim의 링크를 브라우저로 열기](https://stackoverflow.com/questions/9458294/open-url-under-cursor-in-vim-with-browser)
+* [Vim 자동완성 기능 사용하기](https://johngrib.github.io/wiki/vim-auto-completion/)
 
 ##### 게임으로 배우는 Vim 
 * 무료
@@ -18,7 +18,7 @@
 -------------------
 
 ### 알고리즘
-* 2018-01-05 [알고리즘 공부 시작하기 좋은 조합](https://gooddaytocode.blogspot.com/2016/03/blog-post.html?m=1)
-* 2018-01-05 [알고리즘 공부, 어떻게 해야하나요?](http://baactree.tistory.com/52)
+* [알고리즘 공부 시작하기 좋은 조합](https://gooddaytocode.blogspot.com/2016/03/blog-post.html?m=1)
+* [알고리즘 공부, 어떻게 해야하나요?](http://baactree.tistory.com/52)
 
 -------------------

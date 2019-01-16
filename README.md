@@ -1,7 +1,9 @@
 # TIL
 
-## Java
+## 설계 이론
+* [디자인 패턴 관련 링크](https://github.com/hongsii/TIL/blob/master/design-pattern/link.md)
 
+## Java
 * [자바 버전별 추가된 기능 요약](https://github.com/hongsii/TIL/blob/master/java/new-feature-by-java-version.md)
 * [인터페이스에 default, static 메소드가 추가된 이유](https://github.com/hongsii/TIL/blob/master/java/reason-for-adding-default-and-static-method-in-interface.md)
 
