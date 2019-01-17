@@ -13,6 +13,8 @@
 ## Bash
 * [터미널에서 사용 가능한 단축키](https://github.com/hongsii/TIL/blob/master/bash/bash-shortcut.md)
 
-## 기타
+## Vim
+* [Vim 단축키 정리](https://github.com/hongsii/TIL/blob/master/vim/vim-shortcut.md)
 
+## 기타
 * [유용한 링크 정리](https://github.com/hongsii/TIL/blob/master/link.md)
