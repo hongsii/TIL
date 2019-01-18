@@ -7,6 +7,9 @@
 * [자바 버전별 추가된 기능 요약](https://github.com/hongsii/TIL/blob/master/java/new-feature-by-java-version.md)
 * [인터페이스에 default, static 메소드가 추가된 이유](https://github.com/hongsii/TIL/blob/master/java/reason-for-adding-default-and-static-method-in-interface.md)
 
+## Spring
+* [묵시적 생성자 주입 순환 참조 해결](https://github.com/hongsii/TIL/blob/master/spring/resolve-circular-dependency-from-constructor-injection.md)
+
 ## Gradle
 * [Groovy - '와 "의 차이](https://github.com/hongsii/TIL/blob/master/gradle/single-quote-and-double-quote-difference.md)
 
