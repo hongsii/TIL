@@ -1,5 +1,5 @@
 # TIL
-d  `
+
 ## 설계 이론
 * [디자인 패턴 관련 링크](https://github.com/hongsii/TIL/blob/master/design-pattern/link.md)
 
