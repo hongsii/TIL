@@ -1,9 +1,9 @@
 package dev.hongsii.model;
 
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
+import java.util.stream.Collectors;
+
+import static java.util.stream.Collectors.joining;
 
 public class BaseballNumber {
 
@@ -15,6 +15,14 @@ public class BaseballNumber {
         }
 
         this.numbers = numbers;
+    }
+
+    public static BaseballNumber from(String raw) {
+        List<Digit> numbers = Arrays.stream(raw.split(""))
+                .map(Integer::parseInt)
+                .map(Digit::new)
+                .collect(Collectors.toList());
+        return new BaseballNumber(numbers);
     }
 
     private boolean hasDuplicated(List<Digit> numbers) {
@@ -39,5 +47,25 @@ public class BaseballNumber {
 
     public List<Digit> getNumbers() {
         return Collections.unmodifiableList(numbers);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        BaseballNumber that = (BaseballNumber) o;
+        return numbers.equals(that.numbers);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(numbers);
+    }
+
+    @Override
+    public String toString() {
+        return numbers.stream()
+                .map(Digit::toString)
+                .collect(joining(""));
     }
 }

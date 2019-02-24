@@ -4,16 +4,18 @@ import java.util.Arrays;
 
 public enum ResultType {
 
-    STRIKE(true, true),
-    BALL(true, false),
-    OUT(false, false);
+    STRIKE(true, true, "S"),
+    BALL(true, false, "B"),
+    OUT(false, false, "O");
 
     private boolean isCorrectDigit;
     private boolean isCorrectPosition;
+    private String displayCharacter;
 
-    ResultType(boolean isCorrectDigit, boolean isCorrectPosition) {
+    ResultType(boolean isCorrectDigit, boolean isCorrectPosition, String displayCharacter) {
         this.isCorrectDigit = isCorrectDigit;
         this.isCorrectPosition = isCorrectPosition;
+        this.displayCharacter = displayCharacter;
     }
 
     public static ResultType of(boolean isCorrectDigit, boolean isCorrectPosition) {
@@ -26,5 +28,9 @@ public enum ResultType {
     private boolean isSameResult(boolean isCorrectDigit, boolean isCorrectPosition) {
         return (this.isCorrectDigit == isCorrectDigit)
                 && (this.isCorrectPosition == isCorrectPosition);
+    }
+
+    public String getDisplayCharacter() {
+        return displayCharacter;
     }
 }

@@ -47,12 +47,17 @@ public class BaseballNumberTest {
         baseballNumber.match(createBaseballNumber(1, 2, 3, 4));
     }
 
+    @Test
+    public void fromComma() {
+        assertThat(BaseballNumber.from("123")).isEqualTo(baseballNumber);
+    }
+
     private void assertMatching(BaseballNumber other, ResultType... expected) {
         MatchResult matchResult = this.baseballNumber.match(other);
         assertThat(matchResult.getResultTypes()).containsExactlyInAnyOrder(expected);
     }
 
-    private BaseballNumber createBaseballNumber(Integer... numbers) {
+    public static BaseballNumber createBaseballNumber(Integer... numbers) {
         return new BaseballNumber(
                 Arrays.stream(numbers)
                         .map(DigitTest::createDigit)
