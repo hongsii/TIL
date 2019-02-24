@@ -1,8 +1,6 @@
 package dev.hongsii.model;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public class MatchResult {
 
@@ -22,6 +20,19 @@ public class MatchResult {
 
     public void record(boolean isCorrectDigit, boolean isCorrectPosition) {
         resultTypes.add(ResultType.of(isCorrectDigit, isCorrectPosition));
+    }
+
+    public boolean isAllStrike() {
+        return resultTypes.stream()
+                .allMatch(resultType -> resultType == ResultType.STRIKE);
+    }
+
+    public Map<ResultType, Integer> getCountByResult() {
+        Map<ResultType, Integer> results = new LinkedHashMap<>();
+        for (ResultType resultType : resultTypes) {
+            results.put(resultType, results.getOrDefault(resultType, 0) + 1);
+        }
+        return Collections.unmodifiableMap(results);
     }
 
     public List<ResultType> getResultTypes() {
