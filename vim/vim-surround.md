@@ -36,6 +36,31 @@ ys<motion|text-object><additional-character>
 * motion : w, b, h, j, k 과 같은 단축
 * text-object : aw, iw, as, is와 같은 단축키
 
+#### 커서 위치의 단어 감싸기
+
+`ysiw<addtional-character>` 를 입력하면 커서가 있는 위치의 단어를 감쌀 수 있음
+
+``` shell
+Hello, World
+
+# World 위에 커서를 위치한 후, ysiw) 를 입력하면 괄호로 감쌀 수 있음
+Hello, (World)
+
+# 괄호 안 내용의 시작과 끝에 공백을 넣고 싶다면 ysiw( 를 입력
+Hello, ( World )
+```
+
+#### 현재 라인 감싸기
+
+`yss<addtional-character>` 를 입력하면 현재 라인을 감쌀 수 있음
+
+``` shell
+I'm a boy
+
+# yss" 를 입력하면 쌍따옴표로 문장을 감쌀 수 있음
+"I'm a boy"
+```
+
 ### 지우기
 
 감싸고 있는 문자를 지우려면 `ds` 명령어 사용  
@@ -52,3 +77,10 @@ ds<character>
 ``` shell
 cs<target><replacement-character>
 ```
+
+#### 예제
+
+##### 괄호 감싸기
+```
+
+
