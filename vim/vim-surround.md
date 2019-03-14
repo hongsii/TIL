@@ -17,7 +17,10 @@
 ## 설치
 
 [링크](https://github.com/tpope/vim-surround#installation)를 참고  
-그 외, Vundle과 같은 플러그인 매니저를 사용한다면 아래의 내용을 플러그인 리스트에 추가
+
+-----------------
+
+Vundle과 같은 플러그인 매니저를 사용한다면 아래의 내용을 플러그인 리스트에 추가
 
 ``` text
 Plugin 'tpope/vim-surround'
@@ -35,6 +38,7 @@ ys<motion|text-object><additional-character>
 
 * motion : w, b, h, j, k 과 같은 단축
 * text-object : aw, iw, as, is와 같은 단축키
+
 
 #### 커서 위치의 단어 감싸기
 
@@ -72,6 +76,8 @@ Hello, World
 Hell(o, Wor)ld
 ```
 
+-----
+
 ### 지우기
 
 감싸고 있는 문자를 지우려면 `ds` 명령어 사용  
@@ -80,6 +86,8 @@ Hell(o, Wor)ld
 ``` text
 ds<character>
 ```
+
+-----
 
 ### 바꾸기
 
