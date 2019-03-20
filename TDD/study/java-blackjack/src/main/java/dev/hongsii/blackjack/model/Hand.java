@@ -1,5 +1,6 @@
 package dev.hongsii.blackjack.model;
 
+import dev.hongsii.blackjack.model.status.HandStatus;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 
@@ -8,26 +9,34 @@ import java.util.Collections;
 import java.util.List;
 
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
-public class Hands {
+public class Hand {
 
     private List<Card> cards;
 
-    public static Hands initialize() {
-        return of(new ArrayList<>());
+    public static Hand initialize() {
+        return of(Collections.emptyList());
     }
 
-    public static Hands of(List<Card> cards) {
-        return new Hands(cards);
+    public static Hand of(List<Card> cards) {
+        return new Hand(new ArrayList<>(cards));
+    }
+
+    public void add(Card card) {
+        cards.add(card);
+    }
+
+    public void clear() {
+        cards.clear();
+    }
+
+    public HandStatus getStatus() {
+        return HandStatus.of(getTotalScore());
     }
 
     public int getTotalScore() {
         return cards.stream()
                 .mapToInt(Card::getScore)
                 .sum();
-    }
-
-    public void addCard(Card card) {
-        cards.add(card);
     }
 
     public List<Card> getCards() {

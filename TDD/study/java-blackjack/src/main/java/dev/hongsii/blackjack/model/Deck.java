@@ -10,6 +10,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Stack;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @EqualsAndHashCode
@@ -19,10 +20,15 @@ public class Deck {
 
     private Stack<Card> deck;
 
-    public static Deck initialize() {
-        Stack<Card> newDeck = createCards();
-        Collections.shuffle(newDeck);
-        return of(newDeck);
+    public static Deck ofSingle() {
+        return of(createCards());
+    }
+
+    public static Deck ofDouble() {
+        Stack<Card> totalDeck = Stream.of(createCards(), createCards())
+                .flatMap(deck -> deck.stream())
+                .collect(Collectors.toCollection(Stack::new));
+        return of(totalDeck);
     }
 
     public static Deck of(Stack<Card> deck) {
@@ -40,6 +46,10 @@ public class Deck {
             throw new IllegalStateException("카드가 존재하지 않습니다.");
         }
         return deck.pop();
+    }
+
+    public void shuffle() {
+        Collections.shuffle(deck);
     }
 
     public int size() {

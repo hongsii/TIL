@@ -8,28 +8,24 @@ import java.util.List;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
-public class Player {
+public class Player implements CardReceiver {
 
-    public static final int DEFAULT_DRAW_COUNT = 2;
-
-    private Hands hands;
+    private Hand hand;
 
     public static Player create() {
-        return new Player();
+        return of(Hand.initialize());
     }
 
-    public static Player of(Hands hands) {
-        return new Player(hands);
+    public static Player of(Hand hand) {
+        return new Player(hand);
     }
 
-    public void draw(Deck deck) {
-        hands = Hands.initialize();
-        for (int i = 0; i < DEFAULT_DRAW_COUNT; i++) {
-            hands.addCard(deck.draw());
-        }
+    @Override
+    public void receive(Card card) {
+        hand.add(card);
     }
 
     public List<Card> getCards() {
-        return hands.getCards();
+        return hand.getCards();
     }
 }

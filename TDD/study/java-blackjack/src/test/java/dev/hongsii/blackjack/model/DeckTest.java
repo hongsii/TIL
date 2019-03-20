@@ -15,16 +15,31 @@ public class DeckTest {
 
     @Before
     public void setUp() throws Exception {
-        deck = Deck.initialize();
+        deck = Deck.ofSingle();
     }
 
     @Test
-    public void hasDefaultSizeAndWhenInit() {
-        // when
-        int deckSize = deck.size();
+    public void hasDefaultSizeBySingleDeck() {
+        // given
+        Deck deck = Deck.ofSingle();
+        int expectedDeckSize = Deck.DEFAULT_SIZE;
 
         // then
-        assertThat(deckSize).isEqualTo(Deck.DEFAULT_SIZE);
+        assertDeckSize(deck, expectedDeckSize);
+    }
+
+    @Test
+    public void hasDoubleSizeByDoubleDeck() {
+        // given
+        Deck deck = Deck.ofDouble();
+        int expectedDeckSize = Deck.DEFAULT_SIZE * 2;
+
+        // then
+        assertDeckSize(deck, expectedDeckSize);
+    }
+
+    private void assertDeckSize(Deck deck, int expectedDeckSize) {
+        assertThat(deck.size()).isEqualTo(expectedDeckSize);
     }
 
     @Test

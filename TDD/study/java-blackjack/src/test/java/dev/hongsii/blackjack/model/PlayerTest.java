@@ -10,18 +10,18 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class PlayerTest {
 
     @Test
-    public void draw() {
+    public void receive() {
         // given
-        Player player = Player.create();
-        Deck deck = DeckTest.createDeck(asList(
-                new Card(Suit.DIAMONDS, Rank.FOUR),
-                new Card(Suit.DIAMONDS, Rank.FIVE)
+        Hand handOfSixteen = Hand.of(asList(
+                new Card(Suit.DIAMONDS, Rank.TEN),
+                new Card(Suit.SPADES, Rank.SIX)
         ));
+        Player player = Player.of(handOfSixteen);
 
         // when
-        player.draw(deck);
+        player.receive(new Card(Suit.DIAMONDS, Rank.TWO));
 
         // then
-        assertThat(player.getCards()).hasSize(Player.DEFAULT_DRAW_COUNT);
+        assertThat(player.getCards()).hasSize(3);
     }
 }
