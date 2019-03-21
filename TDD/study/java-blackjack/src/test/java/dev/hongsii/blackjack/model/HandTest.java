@@ -2,9 +2,7 @@ package dev.hongsii.blackjack.model;
 
 import dev.hongsii.blackjack.model.enums.Rank;
 import dev.hongsii.blackjack.model.enums.Suit;
-import dev.hongsii.blackjack.model.status.Blackjack;
-import dev.hongsii.blackjack.model.status.HandStatus;
-import dev.hongsii.blackjack.model.status.Ready;
+import dev.hongsii.blackjack.model.status.*;
 import org.junit.Test;
 
 import static java.util.Arrays.asList;
@@ -40,7 +38,7 @@ public class HandTest {
     }
 
     @Test
-    public void getStatusReady() {
+    public void getStatusAsReady() {
         Hand hand = Hand.initialize();
 
         HandStatus status = hand.getStatus();
@@ -49,16 +47,19 @@ public class HandTest {
     }
 
     @Test
-    public void getStatusReady() {
-        Hand hand = Hand.initialize();
+    public void getStatusAsTotal() {
+        Hand hand = Hand.of(asList(
+                new Card(Suit.CLUBS, Rank.TEN),
+                new Card(Suit.CLUBS, Rank.FIVE)
+        ));
 
         HandStatus status = hand.getStatus();
 
-        assertThat(status).isInstanceOf(Ready.class);
+        assertThat(status).isEqualTo(Total.of(15));
     }
 
     @Test
-    public void getStatusBlackjack() {
+    public void getStatusAsBlackjack() {
         Hand hand = Hand.of(asList(
                 new Card(Suit.CLUBS, Rank.TEN),
                 new Card(Suit.CLUBS, Rank.FIVE),
@@ -68,6 +69,19 @@ public class HandTest {
         HandStatus status = hand.getStatus();
 
         assertThat(status).isInstanceOf(Blackjack.class);
+    }
+
+    @Test
+    public void getStatusAsBust() {
+        Hand hand = Hand.of(asList(
+                new Card(Suit.CLUBS, Rank.TEN),
+                new Card(Suit.CLUBS, Rank.FIVE),
+                new Card(Suit.CLUBS, Rank.SEVEN)
+        ));
+
+        HandStatus status = hand.getStatus();
+
+        assertThat(status).isInstanceOf(Bust.class);
     }
 
     @Test
