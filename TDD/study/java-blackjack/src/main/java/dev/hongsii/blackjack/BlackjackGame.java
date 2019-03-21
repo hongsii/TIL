@@ -1,29 +1,35 @@
 package dev.hongsii.blackjack;
 
-import dev.hongsii.blackjack.model.Dealer;
-import dev.hongsii.blackjack.model.DrawingMachine;
-import dev.hongsii.blackjack.model.Player;
+import dev.hongsii.blackjack.model.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
 
+@AllArgsConstructor
 public class BlackjackGame {
 
     public static final int DEFAULT_DRAW_COUNT = 2;
+    public static final int ADDITIONAL_DRAW_COUNT = 1;
 
     private DrawingMachine drawingMachine;
+    @Getter
     private Dealer dealer;
+    @Getter
     private Player player;
 
-    public void bet(Player player, int money) {
-        // TODO 플레이어가 배팅한다.
+    public static BlackjackGame initializeWithSingleDeck() {
+        return new BlackjackGame(DrawingMachine.of(Deck.ofSingle()), Dealer.create(), Player.create());
     }
 
-    public void draw(Player player) {
-//        player.draw(deck);
+    public void draw() {
+        drawingMachine.draw(DEFAULT_DRAW_COUNT, dealer);
+        drawingMachine.draw(DEFAULT_DRAW_COUNT, player);
     }
 
-    public void hit(Player player) {
-//        player.drawByCount(1, deck);
+    public void hit(CardReceiver cardReceiver) {
+        drawingMachine.draw(ADDITIONAL_DRAW_COUNT, cardReceiver);
     }
 
-    public void stand(Player player) {
+    public boolean deal(Player player) {
+        return dealer.deal(player);
     }
 }

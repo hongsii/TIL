@@ -10,6 +10,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class HandTest {
 
+    public static final Hand handOfSixteen = Hand.of(asList(new Card(Suit.DIAMONDS, Rank.TEN), new Card(Suit.SPADES, Rank.SIX)));
+    public static final Hand handOfSeventeen = Hand.of(asList(new Card(Suit.DIAMONDS, Rank.TEN), new Card(Suit.SPADES, Rank.SEVEN)));
+    public static final Hand handOfBlackjack = Hand.of(asList(new Card(Suit.DIAMONDS, Rank.TEN), new Card(Suit.SPADES, Rank.SEVEN), new Card(Suit.DIAMONDS, Rank.FOUR)));
+
     @Test
     public void addCard() {
         // given

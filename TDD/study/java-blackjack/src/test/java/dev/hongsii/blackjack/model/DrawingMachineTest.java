@@ -17,7 +17,7 @@ public class DrawingMachineTest {
                 new Card(Suit.SPADES, Rank.THREE),
                 new Card(Suit.SPADES, Rank.FOUR)
         ));
-        DrawingMachine drawingMachine = new DrawingMachine(deck);
+        DrawingMachine drawingMachine = DrawingMachine.of(deck);
         Player player = Player.create();
 
         // when

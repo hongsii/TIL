@@ -12,11 +12,7 @@ public class DealerTest {
     @Test
     public void receiveCardWhenTotalScoreLessThanScoreForReceive() {
         // given
-        Hand handOfSixteen = Hand.of(asList(
-                new Card(Suit.DIAMONDS, Rank.TEN),
-                new Card(Suit.SPADES, Rank.SIX)
-        ));
-        Dealer dealer = Dealer.of(handOfSixteen);
+        Dealer dealer = Dealer.of(HandTest.handOfSixteen);
 
         // when
         dealer.receive(new Card(Suit.DIAMONDS, Rank.TWO));
@@ -36,5 +32,25 @@ public class DealerTest {
 
         // when
         dealer.receive(new Card(Suit.DIAMONDS, Rank.TWO));
+    }
+
+    @Test
+    public void dealWhenPlayerWins() {
+        // given
+        Hand handOfSixteen = Hand.of(asList(
+                new Card(Suit.DIAMONDS, Rank.TEN),
+                new Card(Suit.SPADES, Rank.SIX)
+        ));
+        Dealer dealer = Dealer.of(handOfSixteen);
+        Hand handOfSeventeen = Hand.of(asList(
+                new Card(Suit.DIAMONDS, Rank.TEN),
+                new Card(Suit.SPADES, Rank.SEVEN)
+        ));
+        Player player = Player.of(handOfSeventeen);
+
+        // when
+        boolean isWinning = dealer.deal(player);
+
+        assertThat(isWinning).isFalse();
     }
 }
