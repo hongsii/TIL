@@ -1,4 +1,4 @@
-package dev.hongsii.blackjack;
+package dev.hongsii.blackjack.model;
 
 import org.junit.Before;
 import org.junit.Test;
