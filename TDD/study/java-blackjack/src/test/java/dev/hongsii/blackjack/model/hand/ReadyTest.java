@@ -1,8 +1,12 @@
-package dev.hongsii.blackjack.model.status;
+package dev.hongsii.blackjack.model.hand;
 
+import dev.hongsii.blackjack.model.Card;
+import dev.hongsii.blackjack.model.CardTest;
+import dev.hongsii.blackjack.model.Cards;
 import org.junit.Before;
 import org.junit.Test;
 
+import static java.util.Arrays.asList;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class ReadyTest {
@@ -20,25 +24,14 @@ public class ReadyTest {
     }
 
     @Test
-    public void isReady() {
-        assertThat(Ready.is(Ready.SCORE)).isTrue();
-    }
-
-    @Test
-    public void isNotReady() {
-        assertThat(Ready.is(Ready.SCORE + 1)).isFalse();
-        assertThat(Ready.is(Ready.SCORE - 1)).isFalse();
-    }
-
-    @Test
     public void nextToTotal() {
         // given
-        int nextScore = 2;
+        Card card = CardTest.ofHearts(Card.Rank.NINE);
 
         // when
-        HandStatus next = ready.next(nextScore);
+        Hand next = ready.add(card);
 
         // then
-        assertThat(next).isEqualTo(Total.of(nextScore));
+        assertThat(next).isEqualTo(Normal.of(Cards.of(asList(card))));
     }
 }

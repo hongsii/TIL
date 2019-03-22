@@ -1,8 +1,8 @@
 package dev.hongsii.blackjack.model;
 
+import dev.hongsii.blackjack.model.hand.Normal;
 import org.junit.Test;
 
-import static java.util.Arrays.asList;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class DealerTest {
@@ -10,10 +10,11 @@ public class DealerTest {
     @Test
     public void receiveCardWhenTotalScoreLessThanScoreForReceive() {
         // given
-        Dealer dealer = Dealer.of(HandTest.handOfSixteen);
+        Normal handOfSixteen = Normal.of(CardsTest.createCards(CardTest.ofDiamonds(Card.Rank.TEN), CardTest.ofSpades(Card.Rank.SIX)));
+        Dealer dealer = Dealer.of(handOfSixteen);
 
         // when
-        dealer.receive(new Card(Card.Suit.DIAMONDS, Card.Rank.TWO));
+        dealer.receive(CardTest.ofDiamonds(Card.Rank.TWO));
 
         // then
         assertThat(dealer.getCards()).hasSize(3);
@@ -22,33 +23,10 @@ public class DealerTest {
     @Test(expected = IllegalStateException.class)
     public void shouldNotReceiveCardWhenTotalScoreMoreThanScoreForReceive() {
         // given
-        Hand handOfSeventeen = Hand.of(asList(
-                new Card(Card.Suit.DIAMONDS, Card.Rank.TEN),
-                new Card(Card.Suit.SPADES, Card.Rank.SEVEN)
-        ));
-        Dealer dealer = Dealer.of(handOfSeventeen);
+        Normal cardsOfSeventeen = Normal.of(CardsTest.createCards(CardTest.ofDiamonds(Card.Rank.TEN), CardTest.ofSpades(Card.Rank.SEVEN)));
+        Dealer dealer = Dealer.of(cardsOfSeventeen);
 
         // when
-        dealer.receive(new Card(Card.Suit.DIAMONDS, Card.Rank.TWO));
-    }
-
-    @Test
-    public void dealWhenPlayerWins() {
-        // given
-        Hand handOfSixteen = Hand.of(asList(
-                new Card(Card.Suit.DIAMONDS, Card.Rank.TEN),
-                new Card(Card.Suit.SPADES, Card.Rank.SIX)
-        ));
-        Dealer dealer = Dealer.of(handOfSixteen);
-        Hand handOfSeventeen = Hand.of(asList(
-                new Card(Card.Suit.DIAMONDS, Card.Rank.TEN),
-                new Card(Card.Suit.SPADES, Card.Rank.SEVEN)
-        ));
-        Player player = Player.of(handOfSeventeen);
-
-        // when
-        boolean isWinning = dealer.deal(player);
-
-        assertThat(isWinning).isFalse();
+        dealer.receive(CardTest.ofDiamonds(Card.Rank.TWO));
     }
 }

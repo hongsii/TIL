@@ -1,5 +1,6 @@
 package dev.hongsii.blackjack.model;
 
+import dev.hongsii.blackjack.model.hand.Hand;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 
@@ -13,11 +14,11 @@ public class Dealer implements CardReceiver {
     private Hand hand;
 
     public static Dealer create() {
-        return of(Hand.initialize());
+        return of(Hand.ready());
     }
 
-    public static Dealer of(Hand hands) {
-        return new Dealer(hands);
+    public static Dealer of(Hand hand) {
+        return new Dealer(hand);
     }
 
     @Override
@@ -25,11 +26,11 @@ public class Dealer implements CardReceiver {
         if (canNotReceive()) {
             throw new IllegalStateException("더 이상 카드를 받을 수 없습니다.");
         }
-        hand.add(card);
+        hand = hand.add(card);
     }
 
     private boolean canNotReceive() {
-        return hand.getTotalScore() >= SCORE_FOR_RECEIVE;
+        return hand.isSameScore(SCORE_FOR_RECEIVE);
     }
 
     public List<Card> getCards() {

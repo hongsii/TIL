@@ -2,7 +2,6 @@ package dev.hongsii.blackjack;
 
 import dev.hongsii.blackjack.model.*;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
 
 @AllArgsConstructor
 public class BlackjackGame {
@@ -11,9 +10,7 @@ public class BlackjackGame {
     public static final int ADDITIONAL_DRAW_COUNT = 1;
 
     private DrawingMachine drawingMachine;
-    @Getter
     private Dealer dealer;
-    @Getter
     private Player player;
 
     public static BlackjackGame initializeWithSingleDeck() {
@@ -30,6 +27,7 @@ public class BlackjackGame {
     }
 
     public boolean deal(Player player) {
-        return dealer.deal(player);
+        return false;
+//        return dealer.deal(player);
     }
 }

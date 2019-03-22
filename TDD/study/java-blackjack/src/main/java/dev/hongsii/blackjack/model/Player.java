@@ -1,5 +1,6 @@
 package dev.hongsii.blackjack.model;
 
+import dev.hongsii.blackjack.model.hand.Hand;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
@@ -13,7 +14,7 @@ public class Player implements CardReceiver {
     private Hand hand;
 
     public static Player create() {
-        return of(Hand.initialize());
+        return of(Hand.ready());
     }
 
     public static Player of(Hand hand) {
@@ -22,7 +23,7 @@ public class Player implements CardReceiver {
 
     @Override
     public void receive(Card card) {
-        hand.add(card);
+        hand = hand.add(card);
     }
 
     public List<Card> getCards() {

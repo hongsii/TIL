@@ -11,9 +11,9 @@ public class DrawingMachineTest {
     public void drawByCount() {
         // given
         Deck deck = DeckTest.createDeck(asList(
-                new Card(Card.Suit.SPADES, Card.Rank.TWO),
-                new Card(Card.Suit.SPADES, Card.Rank.THREE),
-                new Card(Card.Suit.SPADES, Card.Rank.FOUR)
+                CardTest.ofSpades(Card.Rank.TWO),
+                CardTest.ofSpades(Card.Rank.THREE),
+                CardTest.ofSpades(Card.Rank.FOUR)
         ));
         DrawingMachine drawingMachine = DrawingMachine.of(deck);
         Player player = Player.create();
