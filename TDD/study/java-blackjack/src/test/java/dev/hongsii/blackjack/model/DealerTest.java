@@ -1,7 +1,5 @@
 package dev.hongsii.blackjack.model;
 
-import dev.hongsii.blackjack.model.enums.Rank;
-import dev.hongsii.blackjack.model.enums.Suit;
 import org.junit.Test;
 
 import static java.util.Arrays.asList;
@@ -15,7 +13,7 @@ public class DealerTest {
         Dealer dealer = Dealer.of(HandTest.handOfSixteen);
 
         // when
-        dealer.receive(new Card(Suit.DIAMONDS, Rank.TWO));
+        dealer.receive(new Card(Card.Suit.DIAMONDS, Card.Rank.TWO));
 
         // then
         assertThat(dealer.getCards()).hasSize(3);
@@ -25,26 +23,26 @@ public class DealerTest {
     public void shouldNotReceiveCardWhenTotalScoreMoreThanScoreForReceive() {
         // given
         Hand handOfSeventeen = Hand.of(asList(
-                new Card(Suit.DIAMONDS, Rank.TEN),
-                new Card(Suit.SPADES, Rank.SEVEN)
+                new Card(Card.Suit.DIAMONDS, Card.Rank.TEN),
+                new Card(Card.Suit.SPADES, Card.Rank.SEVEN)
         ));
         Dealer dealer = Dealer.of(handOfSeventeen);
 
         // when
-        dealer.receive(new Card(Suit.DIAMONDS, Rank.TWO));
+        dealer.receive(new Card(Card.Suit.DIAMONDS, Card.Rank.TWO));
     }
 
     @Test
     public void dealWhenPlayerWins() {
         // given
         Hand handOfSixteen = Hand.of(asList(
-                new Card(Suit.DIAMONDS, Rank.TEN),
-                new Card(Suit.SPADES, Rank.SIX)
+                new Card(Card.Suit.DIAMONDS, Card.Rank.TEN),
+                new Card(Card.Suit.SPADES, Card.Rank.SIX)
         ));
         Dealer dealer = Dealer.of(handOfSixteen);
         Hand handOfSeventeen = Hand.of(asList(
-                new Card(Suit.DIAMONDS, Rank.TEN),
-                new Card(Suit.SPADES, Rank.SEVEN)
+                new Card(Card.Suit.DIAMONDS, Card.Rank.TEN),
+                new Card(Card.Suit.SPADES, Card.Rank.SEVEN)
         ));
         Player player = Player.of(handOfSeventeen);
 

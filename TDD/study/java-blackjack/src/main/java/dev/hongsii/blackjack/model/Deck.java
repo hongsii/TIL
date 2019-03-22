@@ -1,7 +1,5 @@
 package dev.hongsii.blackjack.model;
 
-import dev.hongsii.blackjack.model.enums.Rank;
-import dev.hongsii.blackjack.model.enums.Suit;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -36,8 +34,8 @@ public class Deck {
     }
 
     private static Stack<Card> createCards() {
-        return Arrays.stream(Suit.values())
-                    .flatMap(suit -> Arrays.stream(Rank.values()).map(rank -> new Card(suit, rank)))
+        return Arrays.stream(Card.Suit.values())
+                    .flatMap(suit -> Arrays.stream(Card.Rank.values()).map(rank -> new Card(suit, rank)))
                     .collect(Collectors.toCollection(Stack::new));
     }
 

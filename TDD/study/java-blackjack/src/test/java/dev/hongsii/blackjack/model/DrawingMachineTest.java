@@ -1,7 +1,5 @@
 package dev.hongsii.blackjack.model;
 
-import dev.hongsii.blackjack.model.enums.Rank;
-import dev.hongsii.blackjack.model.enums.Suit;
 import org.junit.Test;
 
 import static java.util.Arrays.asList;
@@ -13,9 +11,9 @@ public class DrawingMachineTest {
     public void drawByCount() {
         // given
         Deck deck = DeckTest.createDeck(asList(
-                new Card(Suit.SPADES, Rank.TWO),
-                new Card(Suit.SPADES, Rank.THREE),
-                new Card(Suit.SPADES, Rank.FOUR)
+                new Card(Card.Suit.SPADES, Card.Rank.TWO),
+                new Card(Card.Suit.SPADES, Card.Rank.THREE),
+                new Card(Card.Suit.SPADES, Card.Rank.FOUR)
         ));
         DrawingMachine drawingMachine = DrawingMachine.of(deck);
         Player player = Player.create();

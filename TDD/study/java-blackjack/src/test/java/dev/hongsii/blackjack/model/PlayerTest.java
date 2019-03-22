@@ -1,7 +1,5 @@
 package dev.hongsii.blackjack.model;
 
-import dev.hongsii.blackjack.model.enums.Rank;
-import dev.hongsii.blackjack.model.enums.Suit;
 import org.junit.Test;
 
 import static java.util.Arrays.asList;
@@ -13,13 +11,13 @@ public class PlayerTest {
     public void receive() {
         // given
         Hand handOfSixteen = Hand.of(asList(
-                new Card(Suit.DIAMONDS, Rank.TEN),
-                new Card(Suit.SPADES, Rank.SIX)
+                new Card(Card.Suit.DIAMONDS, Card.Rank.TEN),
+                new Card(Card.Suit.SPADES, Card.Rank.SIX)
         ));
         Player player = Player.of(handOfSixteen);
 
         // when
-        player.receive(new Card(Suit.DIAMONDS, Rank.TWO));
+        player.receive(new Card(Card.Suit.DIAMONDS, Card.Rank.TWO));
 
         // then
         assertThat(player.getCards()).hasSize(3);
