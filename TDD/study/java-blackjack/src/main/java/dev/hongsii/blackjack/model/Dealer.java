@@ -7,7 +7,7 @@ import lombok.AllArgsConstructor;
 import java.util.List;
 
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
-public class Dealer implements CardReceiver {
+public class Dealer implements CardReceiver, CardMatcher {
 
     private static final int SCORE_FOR_RECEIVE = 17;
 
@@ -31,6 +31,17 @@ public class Dealer implements CardReceiver {
 
     private boolean canNotReceive() {
         return hand.isSameScore(SCORE_FOR_RECEIVE);
+    }
+
+    @Override
+    public boolean win(Hand other) {
+        if (other.isBust()) {
+            return true;
+        }
+        if (hand.isBust()) {
+            return false;
+        }
+        return hand.isLargerThan(other);
     }
 
     public List<Card> getCards() {

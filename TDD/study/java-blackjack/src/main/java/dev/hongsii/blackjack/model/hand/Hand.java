@@ -26,5 +26,13 @@ public abstract class Hand {
         return cards.isSameScore(score);
     }
 
+    public boolean isLargerThan(Hand hand) {
+        return cards.isLagerThan(hand.cards.getTotalScore());
+    }
+
+    public boolean isBust() {
+        return this.getClass() == Bust.class;
+    }
+
     public abstract Hand add(Card card);
 }

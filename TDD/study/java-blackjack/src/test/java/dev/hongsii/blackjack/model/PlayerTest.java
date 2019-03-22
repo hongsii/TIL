@@ -19,4 +19,30 @@ public class PlayerTest {
         // then
         assertThat(player.getCards()).hasSize(3);
     }
+
+    @Test
+    public void win() {
+        // given
+        Player player = Player.of(Normal.of(CardsTest.createCards(CardTest.ofClubs(Card.Rank.TEN))));
+        Dealer dealer = Dealer.of(Normal.of(CardsTest.createCards(CardTest.ofClubs(Card.Rank.NINE))));
+
+        // when
+        boolean isWin = player.winTo(dealer);
+
+        // then
+        assertThat(isWin).isTrue();
+    }
+
+    @Test
+    public void winWhenDealerIsBust() {
+        // given
+        Player player = Player.of(Normal.of(CardsTest.createCards(CardTest.ofClubs(Card.Rank.TEN))));
+        Dealer dealer = Dealer.of(Normal.of(CardsTest.createCards(CardTest.ofClubs(Card.Rank.NINE))));
+
+        // when
+        boolean isWin = player.winTo(dealer);
+
+        // then
+        assertThat(isWin).isTrue();
+    }
 }

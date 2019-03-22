@@ -19,7 +19,7 @@ public class BlackjackGame {
         return new BlackjackGame(DrawingMachine.of(Deck.ofSingle()), Dealer.create(), Player.create());
     }
 
-    public void draw() {
+    public void deal() {
         drawingMachine.draw(DEFAULT_DRAW_COUNT, dealer);
         drawingMachine.draw(DEFAULT_DRAW_COUNT, player);
     }
@@ -28,8 +28,7 @@ public class BlackjackGame {
         drawingMachine.draw(ADDITIONAL_DRAW_COUNT, cardReceiver);
     }
 
-    public boolean deal(Player player) {
-        return false;
-//        return dealer.deal(player);
+    public boolean winToDealer(Player player) {
+        return player.winTo(dealer);
     }
 }

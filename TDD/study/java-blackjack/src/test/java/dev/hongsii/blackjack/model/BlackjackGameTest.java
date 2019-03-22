@@ -18,7 +18,7 @@ public class BlackjackGameTest {
     @Test
     public void drawToEachCardReceiverByDefaultDrawCount() {
         // when
-        blackjackGame.draw();
+        blackjackGame.deal();
 
         // then
         assertThat(blackjackGame.getDealer().getCards()).hasSize(BlackjackGame.DEFAULT_DRAW_COUNT);
@@ -30,10 +30,5 @@ public class BlackjackGameTest {
         blackjackGame.hit(blackjackGame.getPlayer());
 
         assertThat(blackjackGame.getPlayer().getCards()).hasSize(BlackjackGame.ADDITIONAL_DRAW_COUNT);
-    }
-
-    @Test
-    public void dealWhenWin() {
-
     }
 }
