@@ -63,4 +63,16 @@ public class BustTest {
         // when
         bust.add(CardTest.ofHearts(Card.Rank.TWO));
     }
+
+    @Test
+    public void getWinningMoney() {
+        // given
+        Bust bust = Bust.of(CardsTest.BUST);
+
+        // when
+        int winningMoney = bust.getWinningMoney(100);
+
+        // then
+        assertThat(winningMoney).isEqualTo(0);
+    }
 }

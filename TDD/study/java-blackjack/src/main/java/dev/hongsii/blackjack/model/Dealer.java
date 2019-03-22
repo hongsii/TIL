@@ -22,6 +22,11 @@ public class Dealer implements CardReceiver, CardMatcher {
     }
 
     @Override
+    public void ready() {
+        hand = Hand.ready();
+    }
+
+    @Override
     public void receive(Card card) {
         if (canNotReceive()) {
             throw new IllegalStateException("더 이상 카드를 받을 수 없습니다.");
@@ -43,6 +48,10 @@ public class Dealer implements CardReceiver, CardMatcher {
             return false;
         }
         return hand.isLargerThan(other);
+    }
+
+    public void clear() {
+        hand = Hand.ready();
     }
 
     public List<Card> getCards() {

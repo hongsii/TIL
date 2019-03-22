@@ -1,16 +1,17 @@
 package dev.hongsii.blackjack.io;
 
+import dev.hongsii.blackjack.model.Player;
+
 import java.util.Scanner;
 
 public class ConsoleInput {
 
     private static final Scanner scanner = new Scanner(System.in);
 
-//    public static int inputBettingMoney(Player player) {
-//        System.out.println("플레이어가 소유한 금액 : " + player.getMoney());
-//        System.out.printf("-> 배팅 : ");
-//        return scanner.nextInt();
-//    }
+    public static int inputBettingMoney(Player player) {
+        System.out.print("배팅할 금액 " + "(보유 금액 : " + player.getMoney() + ")"  + " : ");
+        return scanner.nextInt();
+    }
 
     public static boolean inputPlayerInputForHit() {
         while (true) {

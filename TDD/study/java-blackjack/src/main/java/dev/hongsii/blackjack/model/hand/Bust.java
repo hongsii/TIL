@@ -24,4 +24,9 @@ public class Bust extends Hand {
     public Hand add(Card card) {
         throw new IllegalStateException("마지막 상태입니다.");
     }
+
+    @Override
+    public double getWinningMoneyRate() {
+        return -1;
+    }
 }

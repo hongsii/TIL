@@ -10,23 +10,29 @@ public class BlackjackGameConsole {
     public static void main(String[] args) {
         BlackjackGame blackjackGame = BlackjackGame.initializeWithSingleDeck();
 
-        // 카드를 두장씩 뽑는다.
-        blackjackGame.deal();
-
-        // 뽑은 카드를 보여준다.
-        ConsoleOutput.displayHandOfDealer(blackjackGame.getDealer());
-        ConsoleOutput.displayHandOfPlayer(blackjackGame.getPlayer());
-
-        // 플레이어가 카드를 뽑는다.
         while (true) {
+            // 플레이어가 배팅한다.
             Player player = blackjackGame.getPlayer();
-            boolean isHit = ConsoleInput.inputPlayerInputForHit();
-            if (!isHit) {
-                break;
+            blackjackGame.bet(player, ConsoleInput.inputBettingMoney(player));
+
+            // 카드를 두장씩 뽑는다.
+            blackjackGame.deal();
+
+            // 뽑은 카드를 보여준다.
+            ConsoleOutput.displayHandOfDealer(blackjackGame.getDealer());
+            ConsoleOutput.displayHandOfPlayer(blackjackGame.getPlayer());
+
+            // 플레이어가 카드를 뽑는다.
+            while (true) {
+                boolean isHit = ConsoleInput.inputPlayerInputForHit();
+                if (!isHit) {
+                    break;
+                }
+                blackjackGame.hit(player);
+                ConsoleOutput.displayHandOfPlayer(player);
             }
-            blackjackGame.hit(player);
-            ConsoleOutput.displayHandOfPlayer(player);
+            ConsoleOutput.displayResult(blackjackGame.winToDealer(blackjackGame.getPlayer()));
+            System.out.println(blackjackGame.getPlayer().getMoney());
         }
-        ConsoleOutput.displayResult(blackjackGame.winToDealer(blackjackGame.getPlayer()));
     }
 }

@@ -60,4 +60,16 @@ public class NormalTest {
         assertThat(next).isInstanceOf(Bust.class);
         assertThat(next).isEqualTo(Bust.of(CardsTest.createCards(ten, six, nextCard)));
     }
+
+    @Test
+    public void getWinningMoney() {
+        // given
+        Normal normal = Normal.of(CardsTest.createCards(CardTest.ofClubs(Card.Rank.TEN)));
+
+        // when
+        int winningMoney = normal.getWinningMoney(100);
+
+        // then
+        assertThat(winningMoney).isEqualTo(200);
+    }
 }

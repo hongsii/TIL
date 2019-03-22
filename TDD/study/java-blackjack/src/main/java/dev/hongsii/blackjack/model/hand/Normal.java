@@ -27,4 +27,9 @@ public class Normal extends Hand {
         }
         return this;
     }
+
+    @Override
+    public double getWinningMoneyRate() {
+        return 1;
+    }
 }

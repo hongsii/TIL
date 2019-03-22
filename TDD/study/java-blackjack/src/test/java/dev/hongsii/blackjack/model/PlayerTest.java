@@ -45,4 +45,16 @@ public class PlayerTest {
         // then
         assertThat(isWin).isTrue();
     }
+
+    @Test
+    public void bet() {
+        // given
+        Player player = Player.create();
+
+        // when
+        player.bet(Player.DEFAULT_MONEY);
+
+        // then
+        assertThat(player.getMoney()).isEqualTo(0);
+    }
 }

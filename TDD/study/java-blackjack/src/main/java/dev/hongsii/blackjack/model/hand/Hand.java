@@ -46,5 +46,11 @@ public abstract class Hand {
         return this.getClass() == Bust.class;
     }
 
+    public int getWinningMoney(int money) {
+        double winningMoney = money + (money * getWinningMoneyRate());
+        return (int) Math.round(winningMoney);
+    }
+
     public abstract Hand add(Card card);
+    public abstract double getWinningMoneyRate();
 }

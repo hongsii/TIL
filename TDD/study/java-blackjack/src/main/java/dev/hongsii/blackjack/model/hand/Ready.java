@@ -22,6 +22,16 @@ public class Ready extends Hand {
         return Normal.of(newCards);
     }
 
+    @Override
+    public int getWinningMoney(int money) {
+        throw new IllegalStateException("게임이 시작되지 않았습니다.");
+    }
+
+    @Override
+    public double getWinningMoneyRate() {
+        return 0;
+    }
+
     private static class SingleTon {
 
         private static Ready instance = new Ready();

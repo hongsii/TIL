@@ -21,9 +21,18 @@ public class BlackjackGame {
         return new BlackjackGame(DrawingMachine.of(deck), Dealer.create(), Player.create());
     }
 
+    public void bet(Player player, int money) {
+        player.bet(money);
+    }
+
     public void deal() {
-        drawingMachine.draw(DEFAULT_DRAW_COUNT, dealer);
-        drawingMachine.draw(DEFAULT_DRAW_COUNT, player);
+        dealTo(dealer);
+        dealTo(player);
+    }
+
+    private void dealTo(CardReceiver cardReceiver) {
+        cardReceiver.ready();
+        drawingMachine.draw(DEFAULT_DRAW_COUNT, cardReceiver);
     }
 
     public void hit(CardReceiver cardReceiver) {
