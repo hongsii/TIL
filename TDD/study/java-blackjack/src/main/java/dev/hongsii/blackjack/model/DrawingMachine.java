@@ -24,7 +24,6 @@ public class DrawingMachine {
             cardReceiver.receive(card);
         } catch (Exception e) {
             deck.push(card);
-            throw new IllegalStateException(e.getMessage());
         }
     }
 }

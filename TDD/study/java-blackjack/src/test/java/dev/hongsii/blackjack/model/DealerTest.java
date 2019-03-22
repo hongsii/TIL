@@ -21,6 +21,19 @@ public class DealerTest {
         assertThat(dealer.getCards()).hasSize(3);
     }
 
+    @Test
+    public void receiveCardWhenHasOneCard() {
+        // given
+        Normal handOfTen = Normal.of(CardsTest.createCards(CardTest.ofDiamonds(Card.Rank.TEN)));
+        Dealer dealer = Dealer.of(handOfTen);
+
+        // when
+        dealer.receive(CardTest.ofDiamonds(Card.Rank.NINE));
+
+        // then
+        assertThat(dealer.getCards()).hasSize(2);
+    }
+
     @Test(expected = IllegalStateException.class)
     public void shouldNotReceiveCardWhenTotalScoreMoreThanScoreForReceive() {
         // given

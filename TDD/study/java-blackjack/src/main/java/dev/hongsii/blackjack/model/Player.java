@@ -26,6 +26,10 @@ public class Player implements CardReceiver {
         hand = hand.add(card);
     }
 
+    public boolean isBlackjack() {
+        return hand.isBlackjack();
+    }
+
     public boolean winTo(CardMatcher cardMatcher) {
         return !cardMatcher.win(hand);
     }

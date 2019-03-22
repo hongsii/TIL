@@ -27,7 +27,19 @@ public abstract class Hand {
     }
 
     public boolean isLargerThan(Hand hand) {
-        return cards.isLagerThan(hand.cards.getTotalScore());
+        return isLargerThan(hand.cards.getTotalScore());
+    }
+
+    public boolean isLargerThan(int score) {
+        return cards.isLagerThan(score);
+    }
+
+    public boolean hasCountOfCards(int countOfCards) {
+        return cards.hasCountOfCards(countOfCards);
+    }
+
+    public boolean isBlackjack() {
+        return this.getClass() == Blackjack.class;
     }
 
     public boolean isBust() {

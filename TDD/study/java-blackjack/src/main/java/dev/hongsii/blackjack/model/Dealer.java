@@ -30,7 +30,8 @@ public class Dealer implements CardReceiver, CardMatcher {
     }
 
     private boolean canNotReceive() {
-        return hand.isSameScore(SCORE_FOR_RECEIVE);
+        return hand.hasCountOfCards(BlackjackGame.DEFAULT_DRAW_COUNT)
+                && (hand.isSameScore(SCORE_FOR_RECEIVE) || hand.isLargerThan(SCORE_FOR_RECEIVE));
     }
 
     @Override

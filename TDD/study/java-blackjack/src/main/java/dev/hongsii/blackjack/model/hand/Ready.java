@@ -3,10 +3,12 @@ package dev.hongsii.blackjack.model.hand;
 import dev.hongsii.blackjack.model.Card;
 import dev.hongsii.blackjack.model.Cards;
 
+import java.util.Collections;
+
 public class Ready extends Hand {
 
     private Ready() {
-        super(null);
+        super(Cards.of(Collections.emptyList()));
     }
 
     public static Ready getInstance() {

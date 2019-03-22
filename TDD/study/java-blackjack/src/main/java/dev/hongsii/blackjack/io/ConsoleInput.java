@@ -11,4 +11,18 @@ public class ConsoleInput {
 //        System.out.printf("-> 배팅 : ");
 //        return scanner.nextInt();
 //    }
+
+    public static boolean inputPlayerInputForHit() {
+        while (true) {
+            System.out.print("히트하시겠습니까? (y/n) : ");
+            String input = scanner.next();
+            if ("y".equals(input.toLowerCase())) {
+                return true;
+            }
+            if ("n".equals(input.toLowerCase())) {
+                return false;
+            }
+            System.out.println("잘못된 입력입니다.");
+        }
+    }
 }

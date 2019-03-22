@@ -16,7 +16,9 @@ public class BlackjackGame {
     private Player player;
 
     public static BlackjackGame initializeWithSingleDeck() {
-        return new BlackjackGame(DrawingMachine.of(Deck.ofSingle()), Dealer.create(), Player.create());
+        Deck deck = Deck.ofSingle();
+        deck.shuffle();
+        return new BlackjackGame(DrawingMachine.of(deck), Dealer.create(), Player.create());
     }
 
     public void deal() {
