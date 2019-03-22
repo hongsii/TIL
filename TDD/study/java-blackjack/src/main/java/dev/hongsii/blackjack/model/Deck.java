@@ -53,4 +53,8 @@ public class Deck {
     public int size() {
         return deck.size();
     }
+
+    public void push(Card card) {
+        deck.push(card);
+    }
 }

@@ -62,6 +62,18 @@ public class DeckTest {
         deck.draw();
     }
 
+    @Test
+    public void push() {
+        // given
+        Card card = deck.draw();
+
+        // then
+        deck.push(card);
+        Card drawCard = deck.draw();
+
+        assertThat(drawCard == card);
+    }
+
     public static Deck createDeck(List<Card> cards) {
         return Deck.of(cards.stream().collect(Collectors.toCollection(Stack::new)));
     }

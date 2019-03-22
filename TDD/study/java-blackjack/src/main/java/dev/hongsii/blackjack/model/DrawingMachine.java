@@ -14,7 +14,17 @@ public class DrawingMachine {
 
     public void draw(int drawCount, CardReceiver cardReceiver) {
         for (int count = 1; count <= drawCount; count++) {
-            cardReceiver.receive(deck.draw());
+            drawToCardReceiver(cardReceiver);
+        }
+    }
+
+    private void drawToCardReceiver(CardReceiver cardReceiver) {
+        Card card = deck.draw();
+        try {
+            cardReceiver.receive(card);
+        } catch (Exception e) {
+            deck.push(card);
+            throw new IllegalStateException(e.getMessage());
         }
     }
 }
