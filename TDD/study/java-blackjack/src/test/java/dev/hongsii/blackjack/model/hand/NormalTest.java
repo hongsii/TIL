@@ -72,4 +72,16 @@ public class NormalTest {
         // then
         assertThat(winningMoney).isEqualTo(200);
     }
+
+    @Test
+    public void isNotGameOver() {
+        // given
+        Normal normal = Normal.of(CardsTest.createCards(CardTest.ofClubs(Card.Rank.TEN)));
+
+        // when
+        boolean isGameOver = normal.isGameOver();
+
+        // then
+        assertThat(isGameOver).isFalse();
+    }
 }

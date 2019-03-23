@@ -99,4 +99,16 @@ public class BlackjackTest {
         // then
         assertThat(winningMoney).isEqualTo(250);
     }
+
+    @Test
+    public void isGameOver() {
+        // given
+        Blackjack blackjack = Blackjack.of(CardsTest.BLACKJACK);
+
+        // when
+        boolean isGameOver = blackjack.isGameOver();
+
+        // then
+        assertThat(isGameOver).isTrue();
+    }
 }

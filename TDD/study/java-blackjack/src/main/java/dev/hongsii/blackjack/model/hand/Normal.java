@@ -29,6 +29,21 @@ public class Normal extends Hand {
     }
 
     @Override
+    public boolean isGameOver() {
+        return false;
+    }
+
+    @Override
+    public boolean isBlackjack() {
+        return false;
+    }
+
+    @Override
+    public boolean isBust() {
+        return false;
+    }
+
+    @Override
     public double getWinningMoneyRate() {
         return 1;
     }

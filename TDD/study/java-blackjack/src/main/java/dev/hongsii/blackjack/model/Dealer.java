@@ -34,19 +34,13 @@ public class Dealer implements CardReceiver, CardMatcher {
         hand = hand.add(card);
     }
 
+    @Override
+    public boolean isGameOver() {
+        return hand.isGameOver();
+    }
+
     private boolean canNotReceive() {
-        return (hand.hasCountOfCards(BlackjackGame.DEFAULT_DRAW_COUNT) || hand.hasCountOfCardsLargerThan(BlackjackGame.DEFAULT_DRAW_COUNT))
-                && (hand.isSameScore(SCORE_FOR_RECEIVE) || hand.isLargerThan(SCORE_FOR_RECEIVE));
-    }
-
-    @Override
-    public boolean isBlackjack() {
-        return hand.isBlackjack();
-    }
-
-    @Override
-    public boolean isBust() {
-        return hand.isBust();
+        return hand.isSameScore(SCORE_FOR_RECEIVE) || hand.isLargerThan(SCORE_FOR_RECEIVE);
     }
 
     @Override

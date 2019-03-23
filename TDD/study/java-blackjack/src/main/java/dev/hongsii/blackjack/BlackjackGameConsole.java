@@ -17,13 +17,11 @@ public class BlackjackGameConsole {
             try {
                 // 카드를 두장씩 뽑고, 게임 종료 여부 확인
                 blackjackGame.deal();
-                blackjackGame.validateHand(blackjackGame.getDealer());
-                blackjackGame.validateHand(blackjackGame.getPlayer());
-
                 ConsoleOutput.displayHandOfDealerOnlyOneCard(blackjackGame.getDealer());
                 ConsoleOutput.displayHandOfPlayer(blackjackGame.getPlayer());
 
                 // 추가로 카드를 뽑는다.
+                blackjackGame.validateHand(blackjackGame.getPlayer());
                 hitFromPlayer(blackjackGame);
                 hitFromDealer(blackjackGame);
             } catch (GameOverException e) {

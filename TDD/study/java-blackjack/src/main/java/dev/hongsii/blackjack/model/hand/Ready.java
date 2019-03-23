@@ -23,6 +23,21 @@ public class Ready extends Hand {
     }
 
     @Override
+    public boolean isGameOver() {
+        return false;
+    }
+
+    @Override
+    public boolean isBlackjack() {
+        return false;
+    }
+
+    @Override
+    public boolean isBust() {
+        return false;
+    }
+
+    @Override
     public int getWinningMoney(int money) {
         throw new IllegalStateException("게임이 시작되지 않았습니다.");
     }

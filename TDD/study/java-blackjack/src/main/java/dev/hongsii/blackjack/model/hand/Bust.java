@@ -26,6 +26,21 @@ public class Bust extends Hand {
     }
 
     @Override
+    public boolean isGameOver() {
+        return true;
+    }
+
+    @Override
+    public boolean isBlackjack() {
+        return false;
+    }
+
+    @Override
+    public boolean isBust() {
+        return true;
+    }
+
+    @Override
     public double getWinningMoneyRate() {
         return -1;
     }

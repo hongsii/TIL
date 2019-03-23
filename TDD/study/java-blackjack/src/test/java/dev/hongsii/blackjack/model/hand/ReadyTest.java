@@ -34,4 +34,13 @@ public class ReadyTest {
         // then
         assertThat(next).isEqualTo(Normal.of(Cards.of(asList(card))));
     }
+
+    @Test
+    public void isNotGameOver() {
+        // when
+        boolean isGameOver = ready.isGameOver();
+
+        // then
+        assertThat(isGameOver).isFalse();
+    }
 }

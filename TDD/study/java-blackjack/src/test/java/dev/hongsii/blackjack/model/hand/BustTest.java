@@ -75,4 +75,16 @@ public class BustTest {
         // then
         assertThat(winningMoney).isEqualTo(0);
     }
+
+    @Test
+    public void isGameOver() {
+        // given
+        Bust bust = Bust.of(CardsTest.BUST);
+
+        // when
+        boolean isGameOver = bust.isGameOver();
+
+        // then
+        assertThat(isGameOver).isTrue();
+    }
 }

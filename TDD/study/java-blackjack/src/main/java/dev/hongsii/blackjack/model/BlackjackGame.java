@@ -45,7 +45,7 @@ public class BlackjackGame {
     }
 
     public void validateHand(CardReceiver cardReceiver) {
-        if (cardReceiver.isBlackjack() || cardReceiver.isBust()) {
+        if (cardReceiver.isGameOver()) {
             throw new GameOverException();
         }
     }

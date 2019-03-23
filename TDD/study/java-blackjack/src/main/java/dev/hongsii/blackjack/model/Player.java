@@ -43,13 +43,8 @@ public class Player implements CardReceiver {
     }
 
     @Override
-    public boolean isBlackjack() {
-        return hand.isBlackjack();
-    }
-
-    @Override
-    public boolean isBust() {
-        return hand.isBust();
+    public boolean isGameOver() {
+        return hand.isGameOver();
     }
 
     public boolean winTo(CardMatcher cardMatcher) {
