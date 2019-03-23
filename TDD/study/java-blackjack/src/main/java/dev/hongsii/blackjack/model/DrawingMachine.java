@@ -24,6 +24,7 @@ public class DrawingMachine {
             cardReceiver.receive(card);
         } catch (Exception e) {
             deck.push(card);
+            throw new IllegalStateException("더 이상 카드를 뽑을 수 없습니다.");
         }
     }
 }

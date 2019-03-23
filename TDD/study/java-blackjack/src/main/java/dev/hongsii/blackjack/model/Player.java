@@ -42,8 +42,14 @@ public class Player implements CardReceiver {
         hand = hand.add(card);
     }
 
+    @Override
     public boolean isBlackjack() {
         return hand.isBlackjack();
+    }
+
+    @Override
+    public boolean isBust() {
+        return hand.isBust();
     }
 
     public boolean winTo(CardMatcher cardMatcher) {
@@ -54,15 +60,15 @@ public class Player implements CardReceiver {
         return isWin;
     }
 
-    public void clear() {
-        hand = Hand.ready();
-    }
-
     public List<Card> getCards() {
         return hand.getCards();
     }
 
     public int getMoney() {
         return money;
+    }
+
+    public int getTotalScore() {
+        return hand.getTotalScore();
     }
 }

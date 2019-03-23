@@ -50,6 +50,10 @@ public class Cards {
         return cards.size() == countOfCards;
     }
 
+    public boolean hasCountOfCardsLargerThan(int countOfCards) {
+        return cards.size() > countOfCards;
+    }
+
     public List<Card> getCards() {
         return Collections.unmodifiableList(cards);
     }

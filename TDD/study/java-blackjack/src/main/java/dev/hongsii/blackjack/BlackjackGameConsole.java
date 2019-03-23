@@ -1,9 +1,9 @@
 package dev.hongsii.blackjack;
 
+import dev.hongsii.blackjack.exception.GameOverException;
 import dev.hongsii.blackjack.io.ConsoleInput;
 import dev.hongsii.blackjack.io.ConsoleOutput;
 import dev.hongsii.blackjack.model.BlackjackGame;
-import dev.hongsii.blackjack.model.Player;
 
 public class BlackjackGameConsole {
 
@@ -12,27 +12,51 @@ public class BlackjackGameConsole {
 
         while (true) {
             // 플레이어가 배팅한다.
-            Player player = blackjackGame.getPlayer();
-            blackjackGame.bet(player, ConsoleInput.inputBettingMoney(player));
+            blackjackGame.bet(blackjackGame.getPlayer(), ConsoleInput.inputBettingMoney(blackjackGame.getPlayer()));
 
-            // 카드를 두장씩 뽑는다.
-            blackjackGame.deal();
+            try {
+                // 카드를 두장씩 뽑고, 게임 종료 여부 확인
+                blackjackGame.deal();
+                blackjackGame.validateHand(blackjackGame.getDealer());
+                blackjackGame.validateHand(blackjackGame.getPlayer());
 
-            // 뽑은 카드를 보여준다.
-            ConsoleOutput.displayHandOfDealer(blackjackGame.getDealer());
-            ConsoleOutput.displayHandOfPlayer(blackjackGame.getPlayer());
+                ConsoleOutput.displayHandOfDealerOnlyOneCard(blackjackGame.getDealer());
+                ConsoleOutput.displayHandOfPlayer(blackjackGame.getPlayer());
 
-            // 플레이어가 카드를 뽑는다.
+                // 추가로 카드를 뽑는다.
+                hitFromPlayer(blackjackGame);
+                hitFromDealer(blackjackGame);
+            } catch (GameOverException e) {
+                // 누군가 블랙잭 또는 버스트
+            } finally {
+                // 결과를 확인한다.
+                ConsoleOutput.displayHandOfDealer(blackjackGame.getDealer());
+                ConsoleOutput.displayHandOfPlayer(blackjackGame.getPlayer());
+                ConsoleOutput.displayResult(blackjackGame.winToDealer(blackjackGame.getPlayer()));
+            }
+        }
+    }
+
+    private static void hitFromPlayer(BlackjackGame blackjackGame) {
             while (true) {
+                blackjackGame.validateHand(blackjackGame.getPlayer());
                 boolean isHit = ConsoleInput.inputPlayerInputForHit();
                 if (!isHit) {
                     break;
                 }
-                blackjackGame.hit(player);
-                ConsoleOutput.displayHandOfPlayer(player);
+                blackjackGame.hit(blackjackGame.getPlayer());
+                ConsoleOutput.displayHandOfPlayer(blackjackGame.getPlayer());
             }
-            ConsoleOutput.displayResult(blackjackGame.winToDealer(blackjackGame.getPlayer()));
-            System.out.println(blackjackGame.getPlayer().getMoney());
+    }
+
+    private static void hitFromDealer(BlackjackGame blackjackGame) {
+        try {
+            while (true) {
+                blackjackGame.hit(blackjackGame.getDealer());
+            }
+        } catch (IllegalStateException e) {
+            // 카드를 다뽑음
         }
     }
+
 }

@@ -38,6 +38,10 @@ public abstract class Hand {
         return cards.hasCountOfCards(countOfCards);
     }
 
+    public boolean hasCountOfCardsLargerThan(int countOfCards) {
+        return cards.hasCountOfCardsLargerThan(countOfCards);
+    }
+
     public boolean isBlackjack() {
         return this.getClass() == Blackjack.class;
     }
@@ -49,6 +53,10 @@ public abstract class Hand {
     public int getWinningMoney(int money) {
         double winningMoney = money + (money * getWinningMoneyRate());
         return (int) Math.round(winningMoney);
+    }
+
+    public int getTotalScore() {
+        return cards.getTotalScore();
     }
 
     public abstract Hand add(Card card);

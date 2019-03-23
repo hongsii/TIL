@@ -35,8 +35,18 @@ public class Dealer implements CardReceiver, CardMatcher {
     }
 
     private boolean canNotReceive() {
-        return hand.hasCountOfCards(BlackjackGame.DEFAULT_DRAW_COUNT)
+        return (hand.hasCountOfCards(BlackjackGame.DEFAULT_DRAW_COUNT) || hand.hasCountOfCardsLargerThan(BlackjackGame.DEFAULT_DRAW_COUNT))
                 && (hand.isSameScore(SCORE_FOR_RECEIVE) || hand.isLargerThan(SCORE_FOR_RECEIVE));
+    }
+
+    @Override
+    public boolean isBlackjack() {
+        return hand.isBlackjack();
+    }
+
+    @Override
+    public boolean isBust() {
+        return hand.isBust();
     }
 
     @Override
@@ -50,11 +60,11 @@ public class Dealer implements CardReceiver, CardMatcher {
         return hand.isLargerThan(other);
     }
 
-    public void clear() {
-        hand = Hand.ready();
-    }
-
     public List<Card> getCards() {
         return hand.getCards();
+    }
+
+    public int getTotalScore() {
+        return hand.getTotalScore();
     }
 }

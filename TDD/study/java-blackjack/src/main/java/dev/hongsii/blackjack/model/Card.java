@@ -1,13 +1,13 @@
 package dev.hongsii.blackjack.model;
 
 import dev.hongsii.blackjack.model.hand.Blackjack;
+import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
-import lombok.ToString;
+import lombok.Getter;
 
 import java.util.Optional;
 
 @EqualsAndHashCode
-@ToString
 public class Card {
 
     private Suit suit;
@@ -30,12 +30,25 @@ public class Card {
         }
     }
 
+    public int getScore() {
+        return rank.score;
+    }
+
+    @Override
+    public String toString() {
+        return "[" + suit.character + "" + rank.character + "]";
+    }
+
     /**
      * 카드 문양
      */
+    @AllArgsConstructor
     public enum Suit {
 
-        CLUBS, DIAMONDS, HEARTS, SPADES
+        CLUBS("︎♣︎"), DIAMONDS("♦︎"), HEARTS("♥︎"), SPADES("♠︎");
+
+        @Getter
+        private String character;
     }
 
     /**
@@ -43,7 +56,7 @@ public class Card {
      */
     public enum Rank {
 
-        ACE(1, 11),
+        ACE(1, 11, "A"),
         TWO(2),
         THREE(3),
         FOUR(4),
@@ -53,20 +66,26 @@ public class Card {
         EIGHT(8),
         NINE(9),
         TEN(10),
-        JACK(10),
-        QUEEN(10),
-        KING(10);
+        JACK(10, "J"),
+        QUEEN(10, "Q"),
+        KING(10, "K");
 
         private int score;
         private Optional<Integer> specialScore;
+        private String character;
 
         Rank(int score) {
-            this(score, null);
+            this(score, null, Integer.toString(score));
         }
 
-        Rank(int score, Integer specialScore) {
+        Rank(int score, String character) {
+            this(score, null, character);
+        }
+
+        Rank(int score, Integer specialScore, String character) {
             this.score = score;
             this.specialScore = Optional.ofNullable(specialScore);
+            this.character = character;
         }
 
         public int sum(int score) {

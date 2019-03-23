@@ -1,5 +1,6 @@
 package dev.hongsii.blackjack.model;
 
+import dev.hongsii.blackjack.exception.GameOverException;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -32,11 +33,21 @@ public class BlackjackGame {
 
     private void dealTo(CardReceiver cardReceiver) {
         cardReceiver.ready();
-        drawingMachine.draw(DEFAULT_DRAW_COUNT, cardReceiver);
+        draw(DEFAULT_DRAW_COUNT, cardReceiver);
     }
 
     public void hit(CardReceiver cardReceiver) {
-        drawingMachine.draw(ADDITIONAL_DRAW_COUNT, cardReceiver);
+        draw(ADDITIONAL_DRAW_COUNT, cardReceiver);
+    }
+
+    private void draw(int drawCount, CardReceiver cardReceiver) {
+        drawingMachine.draw(drawCount, cardReceiver);
+    }
+
+    public void validateHand(CardReceiver cardReceiver) {
+        if (cardReceiver.isBlackjack() || cardReceiver.isBust()) {
+            throw new GameOverException();
+        }
     }
 
     public boolean winToDealer(Player player) {

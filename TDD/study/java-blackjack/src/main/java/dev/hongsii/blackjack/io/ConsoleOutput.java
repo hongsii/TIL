@@ -4,35 +4,55 @@ import dev.hongsii.blackjack.model.Card;
 import dev.hongsii.blackjack.model.Dealer;
 import dev.hongsii.blackjack.model.Player;
 
+import java.util.List;
 import java.util.StringJoiner;
+
+import static java.util.Arrays.asList;
 
 public class ConsoleOutput {
 
-    public static void displayHandOfDealer(Dealer dealer) {
-        System.out.println("== 딜러의 패 ==");
-//        System.out.println(dealer.getCards().stream().findFirst().get());
+    public static void displayHandOfDealerOnlyOneCard(Dealer dealer) {
+        printWithNewline("");
+        Card firstCard = dealer.getCards().stream().findFirst().get();
+        displayHand("딜러", asList(firstCard), firstCard.getScore());
+    }
 
-        StringJoiner cards = new StringJoiner(" / ");
-        for (Card card : dealer.getCards()) {
-            cards.add(card.toString());
-        }
-        System.out.println(cards.toString());
+    public static void displayHandOfDealer(Dealer dealer) {
+        printWithNewline("");
+        displayHand("딜러", dealer.getCards(), dealer.getTotalScore());
     }
 
     public static void displayHandOfPlayer(Player player) {
-        System.out.println("== 플레이어의 패 ==");
-        StringJoiner cards = new StringJoiner(" / ");
-        for (Card card : player.getCards()) {
-            cards.add(card.toString());
+        displayHand("플레이어", player.getCards(), player.getTotalScore());
+    }
+
+    private static void displayHand(String name, List<Card> cards, int totalScore) {
+        printWithNewline(String.format("== %s의 패 ==", name));
+        StringJoiner printingCards = new StringJoiner(" / ");
+        for (Card card : cards) {
+            printingCards.add(card.toString());
         }
-        System.out.println(cards.toString());
+        printWithNewline(printingCards.toString() + " (" + totalScore + ")");
     }
 
     public static void displayResult(boolean isWin) {
         if (isWin) {
-            System.out.println("플레이어가 이겼습니다.");
+            printWithNewline("플레이어가 이겼습니다.");
         } else {
-            System.out.println("딜러가 이겼습니다.");
+            printWithNewline("딜러가 이겼습니다.");
         }
+        printWithNewline("");
+    }
+
+    public static void printInvalidInput() {
+        printWithNewline("잘못된 입력입니다.");
+    }
+
+    public static void printWithNewline(String str) {
+        System.out.println(str);
+    }
+
+    public static void print(String str) {
+        System.out.print(str);
     }
 }

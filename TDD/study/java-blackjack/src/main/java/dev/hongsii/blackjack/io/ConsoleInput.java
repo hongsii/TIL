@@ -9,13 +9,20 @@ public class ConsoleInput {
     private static final Scanner scanner = new Scanner(System.in);
 
     public static int inputBettingMoney(Player player) {
-        System.out.print("배팅할 금액 " + "(보유 금액 : " + player.getMoney() + ")"  + " : ");
-        return scanner.nextInt();
+        while (true) {
+            ConsoleOutput.print("배팅할 금액 " + "(보유 금액 : " + player.getMoney() + ")" + " : ");
+            try {
+                return scanner.nextInt();
+            } catch (Exception e) {
+                ConsoleOutput.printInvalidInput();
+                scanner.nextLine();
+            }
+        }
     }
 
     public static boolean inputPlayerInputForHit() {
         while (true) {
-            System.out.print("히트하시겠습니까? (y/n) : ");
+            ConsoleOutput.print("\n히트하시겠습니까? (y/n) : ");
             String input = scanner.next();
             if ("y".equals(input.toLowerCase())) {
                 return true;
@@ -23,7 +30,7 @@ public class ConsoleInput {
             if ("n".equals(input.toLowerCase())) {
                 return false;
             }
-            System.out.println("잘못된 입력입니다.");
+            ConsoleOutput.printInvalidInput();
         }
     }
 }
