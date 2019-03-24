@@ -1,6 +1,9 @@
 package dev.hongsii.blackjack.model;
 
 import dev.hongsii.blackjack.model.hand.Hand;
+import dev.hongsii.blackjack.model.result.Lose;
+import dev.hongsii.blackjack.model.result.Win;
+import dev.hongsii.blackjack.model.result.WinningResult;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 
@@ -52,6 +55,16 @@ public class Dealer implements CardReceiver, CardMatcher {
             return false;
         }
         return hand.isLargerThan(other);
+    }
+
+    public WinningResult win2(Hand other) {
+        if (other.isBust()) {
+            return new Win(hand);
+        }
+        if (hand.isBust()) {
+            return new Lose();
+        }
+        return (hand.isLargerThan(other))? new Win(hand):new Lose();
     }
 
     public List<Card> getCards() {
