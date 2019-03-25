@@ -7,6 +7,7 @@ import lombok.EqualsAndHashCode;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @EqualsAndHashCode
@@ -32,6 +33,14 @@ public class Cards {
 
     public int getTotalScore() {
         int totalScore = 0;
+        List<Card> notSpecialScoreCards = cards.stream().filter(Card::hasNotSpecialScore).collect(Collectors.toList());
+        totalScore = sum(totalScore, notSpecialScoreCards);
+        List<Card> specialScoreCards = cards.stream().filter(Card::hasSpecialScore).collect(Collectors.toList());
+        totalScore = sum(totalScore, specialScoreCards);
+        return totalScore;
+    }
+
+    private int sum(int totalScore, List<Card> cards) {
         for (Card card : cards) {
             totalScore = card.sum(totalScore);
         }

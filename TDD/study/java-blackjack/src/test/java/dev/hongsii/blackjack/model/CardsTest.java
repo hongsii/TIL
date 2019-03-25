@@ -59,6 +59,22 @@ public class CardsTest {
     }
 
     @Test
+    public void getTotalScoreWhenAceIsElevenAndHasThreeCard() {
+        // given
+        Cards cards = Cards.of(asList(
+                new Card(Card.Suit.CLUBS, Card.Rank.FIVE),
+                new Card(Card.Suit.CLUBS, Card.Rank.ACE),
+                new Card(Card.Suit.CLUBS, Card.Rank.QUEEN)
+        ));
+
+        // when
+        int totalScore = cards.getTotalScore();
+
+        // then
+        assertThat(totalScore).isEqualTo(16);
+    }
+
+    @Test
     public void getTotalScoreWhenHasOnlyTwoAce() {
         // given
         Cards cards = Cards.of(asList(

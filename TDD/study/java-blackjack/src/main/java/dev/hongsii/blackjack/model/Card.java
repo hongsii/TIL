@@ -39,6 +39,14 @@ public class Card {
         return "[" + suit.character + "" + rank.character + "]";
     }
 
+    public boolean hasSpecialScore() {
+        return rank.hasSpecialScore();
+    }
+
+    public boolean hasNotSpecialScore() {
+        return !hasSpecialScore();
+    }
+
     /**
      * 카드 문양
      */
@@ -93,7 +101,7 @@ public class Card {
         }
 
         public int sumBySpecialScore(int score) {
-            if (!specialScore.isPresent()) {
+            if (!hasSpecialScore()) {
                 throw new IllegalStateException("스페셜 점수를 사용할 수 없습니다.");
             }
             int totalScore = this.specialScore.get() + score;
@@ -101,6 +109,10 @@ public class Card {
                 throw new IllegalStateException("합이 블랙잭 점수보다 클 경우 스페셜 점수를 사용할 수 없습니다.");
             }
             return totalScore;
+        }
+
+        public boolean hasSpecialScore() {
+            return specialScore.isPresent();
         }
     }
 }

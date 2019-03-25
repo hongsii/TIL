@@ -47,6 +47,30 @@ public class CardTest {
         assertThat(result).isEqualTo(21);
     }
 
+    @Test
+    public void hasSpecialScore() {
+        // given
+        Card card = ofClubs(Card.Rank.ACE);
+
+        // then
+        boolean hasSpecialScore = card.hasSpecialScore();
+
+        // when
+        assertThat(hasSpecialScore).isTrue();
+    }
+
+    @Test
+    public void hasNotSpecialScore() {
+        // given
+        Card card = ofClubs(Card.Rank.TEN);
+
+        // then
+        boolean hasSpecialScore = card.hasSpecialScore();
+
+        // when
+        assertThat(hasSpecialScore).isFalse();
+    }
+
     public static Card ofClubs(Card.Rank rank) {
         return Card.of(Card.Suit.CLUBS, rank);
     }
