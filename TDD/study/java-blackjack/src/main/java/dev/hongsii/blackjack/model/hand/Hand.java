@@ -12,10 +12,13 @@ import java.util.List;
 @EqualsAndHashCode
 public abstract class Hand {
 
-    protected Cards cards;
+    protected static final int NO_BETTING = 0;
 
-    public static Ready ready() {
-        return Ready.getInstance();
+    protected Cards cards;
+    protected int bettingMoney;
+
+    protected Hand(Cards cards) {
+        this.cards = cards;
     }
 
     public boolean isSameScore(Hand hand) {
@@ -38,12 +41,16 @@ public abstract class Hand {
         return cards.getTotalScore();
     }
 
+    public boolean isGameOver() {
+        return isBlackjack() || isBust();
+    }
+
     public List<Card> getCards() {
         return cards.getCards();
     }
 
-    public boolean isGameOver() {
-        return isBlackjack() || isBust();
+    public int getBettingMoney() {
+        return bettingMoney;
     }
 
     public abstract Hand add(Card card);

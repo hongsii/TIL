@@ -70,7 +70,7 @@ public class DealerTest {
         Result result = dealer.match(Normal.of(CardsTest.createCards(CardTest.ofClubs(Card.Rank.TEN))));
 
         // then
-        assertThat(result).isEqualTo(Win.of(Normal.of(CardsTest.createCards(CardTest.ofClubs(Card.Rank.TEN)))));
+        assertThat(result).isEqualTo(Win.from(Normal.of(CardsTest.createCards(CardTest.ofClubs(Card.Rank.TEN)))));
     }
 
     @Test
@@ -82,7 +82,7 @@ public class DealerTest {
         Result result = dealer.match(Normal.of(CardsTest.createCards(CardTest.ofClubs(Card.Rank.NINE))));
 
         // then
-        assertThat(result).isEqualTo(Lose.getInstance());
+        assertThat(result).isEqualTo(Lose.from(Normal.of(CardsTest.createCards(CardTest.ofClubs(Card.Rank.NINE)))));
     }
 
     @Test
@@ -94,7 +94,7 @@ public class DealerTest {
         Result result = dealer.match(Bust.of(CardsTest.createCards(CardTest.ofClubs(Card.Rank.TEN), CardTest.ofClubs(Card.Rank.TEN), CardTest.ofClubs(Card.Rank.TEN))));
 
         // then
-        assertThat(result).isEqualTo(Lose.getInstance());
+        assertThat(result).isEqualTo(Lose.from(Bust.of(CardsTest.createCards(CardTest.ofClubs(Card.Rank.TEN), CardTest.ofClubs(Card.Rank.TEN), CardTest.ofClubs(Card.Rank.TEN)))));
     }
 
     @Test
@@ -106,7 +106,7 @@ public class DealerTest {
         Result result = dealer.match(Normal.of(CardsTest.createCards(CardTest.ofClubs(Card.Rank.TEN))));
 
         // then
-        assertThat(result).isEqualTo(Win.of(Normal.of(CardsTest.createCards(CardTest.ofClubs(Card.Rank.TEN)))));
+        assertThat(result).isEqualTo(Win.from(Normal.of(CardsTest.createCards(CardTest.ofClubs(Card.Rank.TEN)))));
     }
 
     @Test
@@ -118,6 +118,6 @@ public class DealerTest {
         Result result = dealer.match(Normal.of(CardsTest.createCards(CardTest.ofClubs(Card.Rank.TEN))));
 
         // then
-        assertThat(result).isEqualTo(Push.getInstance());
+        assertThat(result).isEqualTo(Push.from(Normal.of(CardsTest.createCards(CardTest.ofClubs(Card.Rank.TEN)))));
     }
 }

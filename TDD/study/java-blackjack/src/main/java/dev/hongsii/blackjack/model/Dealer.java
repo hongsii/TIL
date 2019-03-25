@@ -1,6 +1,7 @@
 package dev.hongsii.blackjack.model;
 
 import dev.hongsii.blackjack.model.hand.Hand;
+import dev.hongsii.blackjack.model.hand.Ready;
 import dev.hongsii.blackjack.model.result.Lose;
 import dev.hongsii.blackjack.model.result.Push;
 import dev.hongsii.blackjack.model.result.Result;
@@ -18,16 +19,15 @@ public class Dealer implements CardReceiver, CardMatcher {
     private Hand hand;
 
     public static Dealer create() {
-        return of(Hand.ready());
+        return of(Ready.noBetting());
     }
 
     public static Dealer of(Hand hand) {
         return new Dealer(hand);
     }
 
-    @Override
-    public void ready() {
-        hand = Hand.ready();
+    public void reset() {
+        hand = Ready.noBetting();
     }
 
     @Override
@@ -50,15 +50,15 @@ public class Dealer implements CardReceiver, CardMatcher {
     @Override
     public Result match(Hand target) {
         if (target.isBust()) {
-            return Lose.getInstance();
+            return Lose.from(target);
         }
         if (hand.isBust()) {
-            return Win.of(target);
+            return Win.from(target);
         }
         if (target.isSameScore(hand)) {
-            return Push.getInstance();
+            return Push.from(target);
         }
-        return (target.isLargerScore(hand)) ? Win.of(target) : Lose.getInstance();
+        return (target.isLargerScore(hand)) ? Win.from(target) : Lose.from(target);
     }
 
     public List<Card> getCards() {

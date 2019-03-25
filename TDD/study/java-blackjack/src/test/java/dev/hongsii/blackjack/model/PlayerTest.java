@@ -2,6 +2,7 @@ package dev.hongsii.blackjack.model;
 
 import dev.hongsii.blackjack.model.hand.Bust;
 import dev.hongsii.blackjack.model.hand.Normal;
+import dev.hongsii.blackjack.model.result.Lose;
 import dev.hongsii.blackjack.model.result.Result;
 import dev.hongsii.blackjack.model.result.Win;
 import org.junit.Before;
@@ -19,6 +20,18 @@ public class PlayerTest {
     }
 
     @Test
+    public void bet() {
+        // given
+        Player player = Player.create();
+
+        // when
+        player.bet(500);
+
+        // then
+        assertThat(player.getMoney()).isEqualTo(0);
+    }
+
+    @Test
     public void receive() {
         // when
         player.receive(CardTest.ofDiamonds(Card.Rank.TWO));
@@ -30,42 +43,45 @@ public class PlayerTest {
     @Test
     public void win() {
         // given
-        int bettingMoney = Player.DEFAULT_MONEY;
-        player.bet(bettingMoney);
+        Normal hand = Normal.of(CardsTest.createCards(CardTest.ofClubs(Card.Rank.TEN)), 500);
+        player = Player.of(hand, Money.of(0));
         Dealer dealer = Dealer.of(Normal.of(CardsTest.createCards(CardTest.ofClubs(Card.Rank.NINE))));
 
         // when
         Result result = player.winTo(dealer);
 
         // then
-        assertThat(result).isEqualTo(Win.of(Normal.of(CardsTest.createCards(CardTest.ofClubs(Card.Rank.TEN)))));
-        assertThat(player.getMoney()).isEqualTo(result.getWinningMoney(bettingMoney));
+        assertThat(result).isEqualTo(Win.from(hand));
+        assertThat(player.getMoney()).isEqualTo(1000);
     }
 
     @Test
     public void winWhenDealerIsBust() {
         // given
-        int bettingMoney = Player.DEFAULT_MONEY;
-        player.bet(bettingMoney);
+        Normal hand = Normal.of(CardsTest.createCards(CardTest.ofClubs(Card.Rank.TEN)), 500);
+        player = Player.of(hand, Money.of(0));
         Dealer dealer = Dealer.of(Bust.of(CardsTest.BUST));
 
         // when
         Result result = player.winTo(dealer);
 
         // then
-        assertThat(result).isEqualTo(Win.of(Normal.of(CardsTest.createCards(CardTest.ofClubs(Card.Rank.TEN)))));
-        assertThat(player.getMoney()).isEqualTo(result.getWinningMoney(bettingMoney));
+        assertThat(result).isEqualTo(Win.from(hand));
+        assertThat(player.getMoney()).isEqualTo(1000);
     }
 
     @Test
-    public void bet() {
+    public void lose() {
         // given
-        Player player = Player.create();
+        Normal hand = Normal.of(CardsTest.createCards(CardTest.ofClubs(Card.Rank.EIGHT)), 500);
+        player = Player.of(hand, Money.of(0));
+        Dealer dealer = Dealer.of(Normal.of(CardsTest.createCards(CardTest.ofClubs(Card.Rank.NINE))));
 
         // when
-        player.bet(Player.DEFAULT_MONEY);
+        Result result = player.winTo(dealer);
 
         // then
+        assertThat(result).isEqualTo(Lose.from(hand));
         assertThat(player.getMoney()).isEqualTo(0);
     }
 }

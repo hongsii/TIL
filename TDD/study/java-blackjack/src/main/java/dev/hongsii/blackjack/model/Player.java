@@ -1,6 +1,7 @@
 package dev.hongsii.blackjack.model;
 
 import dev.hongsii.blackjack.model.hand.Hand;
+import dev.hongsii.blackjack.model.hand.Ready;
 import dev.hongsii.blackjack.model.result.Result;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -10,32 +11,24 @@ import java.util.List;
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class Player implements CardReceiver {
 
-    public static final int DEFAULT_MONEY = 500;
-
     private Hand hand;
-    private int money;
-    private int bettingMoney = 0;
+    private Money money;
 
     public static Player create() {
-        return of(Hand.ready());
+        return of(Ready.noBetting());
     }
 
     public static Player of(Hand hand) {
-        return Player.of(hand, DEFAULT_MONEY);
+        return Player.of(hand, Money.ofDefault());
     }
 
-    public static Player of(Hand hand, int money) {
-        return new Player(hand, money, 0);
+    public static Player of(Hand hand, Money money) {
+        return new Player(hand, money);
     }
 
-    public void bet(int money) {
-        this.bettingMoney = money;
-        this.money -= bettingMoney;
-    }
-
-    @Override
-    public void ready() {
-        hand = Hand.ready();
+    public void bet(int bettingMoney) {
+        money.minus(bettingMoney);
+        hand = Ready.of(bettingMoney);
     }
 
     @Override
@@ -50,7 +43,7 @@ public class Player implements CardReceiver {
 
     public Result winTo(CardMatcher cardMatcher) {
         Result result = cardMatcher.match(hand);
-        money += result.getWinningMoney(bettingMoney);
+        money.plus(result.getWinningMoney());
         return result;
     }
 
@@ -59,7 +52,7 @@ public class Player implements CardReceiver {
     }
 
     public int getMoney() {
-        return money;
+        return money.getMoney();
     }
 
     public int getTotalScore() {

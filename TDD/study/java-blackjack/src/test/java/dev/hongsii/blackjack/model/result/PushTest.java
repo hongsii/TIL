@@ -9,11 +9,11 @@ public class PushTest {
     @Test
     public void getWinningMoney() {
         // given
-        Push push = Push.getInstance();
+        int bettingMoney = 1000;
+        Push push = Push.of(bettingMoney);
 
         // when
-        int bettingMoney = 1000;
-        int winningMoney = push.getWinningMoney(bettingMoney);
+        int winningMoney = push.getWinningMoney();
 
         // then
         assertThat(winningMoney).isEqualTo(bettingMoney);

@@ -9,13 +9,12 @@ public class LoseTest {
     @Test
     public void getWinningMoney() {
         // given
-        Lose lose = Lose.getInstance();
+        Lose lose = Lose.of(1000);
 
         // when
-        int bettingMoney = 1000;
-        int winningMoney = lose.getWinningMoney(bettingMoney);
+        int winningMoney = lose.getWinningMoney();
 
         // then
-        assertThat(winningMoney).isEqualTo(-bettingMoney);
+        assertThat(winningMoney).isEqualTo(0);
     }
 }

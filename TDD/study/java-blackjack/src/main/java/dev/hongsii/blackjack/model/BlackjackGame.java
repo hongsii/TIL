@@ -28,12 +28,12 @@ public class BlackjackGame {
     }
 
     public void deal() {
+        dealer.reset();
         dealTo(dealer);
         dealTo(player);
     }
 
     private void dealTo(CardReceiver cardReceiver) {
-        cardReceiver.ready();
         draw(DEFAULT_DRAW_COUNT, cardReceiver);
     }
 

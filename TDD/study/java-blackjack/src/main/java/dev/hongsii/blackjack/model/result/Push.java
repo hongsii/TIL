@@ -1,27 +1,31 @@
 package dev.hongsii.blackjack.model.result;
 
+import dev.hongsii.blackjack.model.hand.Hand;
 import lombok.AccessLevel;
-import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
 
-@NoArgsConstructor(access = AccessLevel.PRIVATE)
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@EqualsAndHashCode
 public class Push implements Result {
 
-    public static Push getInstance() {
-        return Singleton.instance;
+    private int bettingMoney;
+
+    public static Push from(Hand hand) {
+        return of(hand.getBettingMoney());
+    }
+
+    public static Push of(int bettingMoney) {
+        return new Push(bettingMoney);
     }
 
     @Override
-    public int getWinningMoney(int bettingMoney) {
+    public int getWinningMoney() {
         return bettingMoney;
     }
 
     @Override
     public String getResult() {
         return "PUSH";
-    }
-
-    private static class Singleton {
-
-        private static Push instance = new Push();
     }
 }

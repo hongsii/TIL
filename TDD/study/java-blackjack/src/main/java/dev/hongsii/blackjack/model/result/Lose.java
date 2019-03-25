@@ -1,29 +1,31 @@
 package dev.hongsii.blackjack.model.result;
 
+import dev.hongsii.blackjack.model.hand.Hand;
 import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
 
-@NoArgsConstructor(access = AccessLevel.PRIVATE)
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
 @EqualsAndHashCode
 public class Lose implements Result {
 
-    public static Lose getInstance() {
-        return Singleton.instance;
+    private int bettingMoney;
+
+    public static Result from(Hand hand) {
+        return of(hand.getBettingMoney());
+    }
+
+    public static Lose of(int bettingMoney) {
+        return new Lose(bettingMoney);
     }
 
     @Override
-    public int getWinningMoney(int bettingMoney) {
-        return -bettingMoney;
+    public int getWinningMoney() {
+        return 0;
     }
 
     @Override
     public String getResult() {
         return "LOSE";
-    }
-
-    private static class Singleton {
-
-        private static final Lose instance = new Lose();
     }
 }

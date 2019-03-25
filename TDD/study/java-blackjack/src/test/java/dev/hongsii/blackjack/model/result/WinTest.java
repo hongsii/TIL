@@ -14,11 +14,11 @@ public class WinTest {
     @Test
     public void getWinningMoneyWhenHandIsNormal() {
         // given
-        Win win = Win.of(Normal.of(CardsTest.createCards(CardTest.ofClubs(Card.Rank.FOUR))));
+        int bettingMoney = 1000;
+        Win win = Win.from(Normal.of(CardsTest.createCards(CardTest.ofClubs(Card.Rank.FOUR)), bettingMoney));
 
         // when
-        int bettingMoney = 1000;
-        int winningMoney = win.getWinningMoney(bettingMoney);
+        int winningMoney = win.getWinningMoney();
 
         // then
         assertThat(winningMoney).isEqualTo(2000);
@@ -27,12 +27,11 @@ public class WinTest {
     @Test
     public void getWinningMoneyWhenHandIsBlackjack() {
         // given
-        Blackjack blackjack = Blackjack.of(CardsTest.BLACKJACK);
-        Win win = Win.of(blackjack);
+        int bettingMoney = 1000;
+        Win win = Win.from(Blackjack.of(CardsTest.BLACKJACK, bettingMoney));
 
         // when
-        int bettingMoney = 1000;
-        int winningMoney = win.getWinningMoney(bettingMoney);
+        int winningMoney = win.getWinningMoney();
 
         // then
         assertThat(winningMoney).isEqualTo(2500);
