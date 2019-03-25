@@ -12,7 +12,7 @@ public class Ready extends Hand {
     }
 
     public static Ready getInstance() {
-        return SingleTon.instance;
+        return Singleton.instance;
     }
 
     @Override
@@ -23,8 +23,8 @@ public class Ready extends Hand {
     }
 
     @Override
-    public boolean isGameOver() {
-        return false;
+    public double getWinningMoneyRate() {
+        return 0;
     }
 
     @Override
@@ -37,19 +37,9 @@ public class Ready extends Hand {
         return false;
     }
 
-    @Override
-    public int getWinningMoney(int money) {
-        throw new IllegalStateException("게임이 시작되지 않았습니다.");
-    }
+    private static class Singleton {
 
-    @Override
-    public double getWinningMoneyRate() {
-        return 0;
-    }
-
-    private static class SingleTon {
-
-        private static Ready instance = new Ready();
+        private static final Ready instance = new Ready();
     }
 }
 

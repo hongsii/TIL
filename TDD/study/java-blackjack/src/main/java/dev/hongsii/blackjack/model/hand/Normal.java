@@ -29,8 +29,8 @@ public class Normal extends Hand {
     }
 
     @Override
-    public boolean isGameOver() {
-        return false;
+    public double getWinningMoneyRate() {
+        return 1;
     }
 
     @Override
@@ -41,10 +41,5 @@ public class Normal extends Hand {
     @Override
     public boolean isBust() {
         return false;
-    }
-
-    @Override
-    public double getWinningMoneyRate() {
-        return 1;
     }
 }

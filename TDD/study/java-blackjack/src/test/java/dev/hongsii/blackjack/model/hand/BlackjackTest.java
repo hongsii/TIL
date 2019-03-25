@@ -76,7 +76,7 @@ public class BlackjackTest {
         Cards cards = CardsTest.BUST;
 
         // when
-        Blackjack blackjack = Blackjack.of(cards);
+        Blackjack.of(cards);
     }
 
     @Test(expected = IllegalStateException.class)
@@ -86,18 +86,6 @@ public class BlackjackTest {
 
         // when
         blackjack.add(CardTest.ofDiamonds(Card.Rank.ACE));
-    }
-
-    @Test
-    public void getWinningMoney() {
-        // given
-        Blackjack blackjack = Blackjack.of(CardsTest.BLACKJACK);
-
-        // when
-        int winningMoney = blackjack.getWinningMoney(100);
-
-        // then
-        assertThat(winningMoney).isEqualTo(250);
     }
 
     @Test

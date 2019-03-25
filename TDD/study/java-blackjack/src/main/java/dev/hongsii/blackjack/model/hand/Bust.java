@@ -26,8 +26,8 @@ public class Bust extends Hand {
     }
 
     @Override
-    public boolean isGameOver() {
-        return true;
+    public double getWinningMoneyRate() {
+        return -1;
     }
 
     @Override
@@ -38,10 +38,5 @@ public class Bust extends Hand {
     @Override
     public boolean isBust() {
         return true;
-    }
-
-    @Override
-    public double getWinningMoneyRate() {
-        return -1;
     }
 }

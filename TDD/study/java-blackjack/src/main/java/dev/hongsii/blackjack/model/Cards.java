@@ -27,10 +27,6 @@ public class Cards {
         cards.add(card);
     }
 
-    public void clear() {
-        cards.clear();
-    }
-
     public int getTotalScore() {
         int totalScore = 0;
         List<Card> notSpecialScoreCards = cards.stream().filter(Card::hasNotSpecialScore).collect(Collectors.toList());
@@ -57,10 +53,6 @@ public class Cards {
 
     public boolean hasCountOfCards(int countOfCards) {
         return cards.size() == countOfCards;
-    }
-
-    public boolean hasCountOfCardsLargerThan(int countOfCards) {
-        return cards.size() > countOfCards;
     }
 
     public List<Card> getCards() {

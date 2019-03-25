@@ -29,8 +29,8 @@ public class Blackjack extends Hand {
     }
 
     @Override
-    public boolean isGameOver() {
-        return true;
+    public double getWinningMoneyRate() {
+        return 1.5;
     }
 
     @Override
@@ -41,10 +41,5 @@ public class Blackjack extends Hand {
     @Override
     public boolean isBust() {
         return false;
-    }
-
-    @Override
-    public double getWinningMoneyRate() {
-        return 1.5;
     }
 }

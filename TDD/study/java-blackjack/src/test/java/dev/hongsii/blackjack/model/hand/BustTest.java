@@ -65,18 +65,6 @@ public class BustTest {
     }
 
     @Test
-    public void getWinningMoney() {
-        // given
-        Bust bust = Bust.of(CardsTest.BUST);
-
-        // when
-        int winningMoney = bust.getWinningMoney(100);
-
-        // then
-        assertThat(winningMoney).isEqualTo(0);
-    }
-
-    @Test
     public void isGameOver() {
         // given
         Bust bust = Bust.of(CardsTest.BUST);

@@ -2,17 +2,11 @@ package dev.hongsii.blackjack.model;
 
 import org.junit.Test;
 
-import java.util.Collections;
-import java.util.List;
-
 import static java.util.Arrays.asList;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class CardsTest {
 
-    public static final Cards CARDS_OF_SIXTEEN = Cards.of(asList(CardTest.ofDiamonds(Card.Rank.TEN), CardTest.ofSpades(Card.Rank.SIX)));
-    public static final List<Card> cardsOfSixteen = Collections.unmodifiableList(asList(CardTest.ofDiamonds(Card.Rank.TEN), CardTest.ofSpades(Card.Rank.SIX)));
-    public static final Cards CARDS_OF_SEVENTEEN = Cards.of(asList(CardTest.ofDiamonds(Card.Rank.TEN), CardTest.ofSpades(Card.Rank.SEVEN)));
     public static final Cards BLACKJACK = Cards.of(asList(CardTest.ofDiamonds(Card.Rank.ACE), CardTest.ofSpades(Card.Rank.KING)));
     public static final Cards BUST = Cards.of(asList(CardTest.ofDiamonds(Card.Rank.EIGHT), CardTest.ofSpades(Card.Rank.JACK), CardTest.ofClubs(Card.Rank.FOUR)));
 
@@ -26,21 +20,6 @@ public class CardsTest {
 
         // then
         assertThat(cards.getTotalScore()).isEqualTo(8);
-    }
-
-    @Test
-    public void clear() {
-        // given
-        Cards cards = Cards.of(asList(
-                new Card(Card.Suit.CLUBS, Card.Rank.EIGHT),
-                new Card(Card.Suit.CLUBS, Card.Rank.NINE)
-        ));
-
-        // when
-        cards.clear();
-
-        // then
-        assertThat(cards.getCards()).hasSize(0);
     }
 
     @Test

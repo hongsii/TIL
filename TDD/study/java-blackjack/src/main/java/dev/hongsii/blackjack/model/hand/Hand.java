@@ -18,10 +18,6 @@ public abstract class Hand {
         return Ready.getInstance();
     }
 
-    public List<Card> getCards() {
-        return cards.getCards();
-    }
-
     public boolean isSameScore(Hand hand) {
         return isSameScore(hand.getTotalScore());
     }
@@ -38,19 +34,20 @@ public abstract class Hand {
         return cards.isLagerThan(score);
     }
 
-    @Deprecated
-    public int getWinningMoney(int money) {
-        double winningMoney = money + (money * getWinningMoneyRate());
-        return (int) Math.round(winningMoney);
-    }
-
     public int getTotalScore() {
         return cards.getTotalScore();
     }
 
+    public List<Card> getCards() {
+        return cards.getCards();
+    }
+
+    public boolean isGameOver() {
+        return isBlackjack() || isBust();
+    }
+
     public abstract Hand add(Card card);
     public abstract double getWinningMoneyRate();
-    public abstract boolean isGameOver();
     public abstract boolean isBlackjack();
     public abstract boolean isBust();
 }

@@ -62,18 +62,6 @@ public class NormalTest {
     }
 
     @Test
-    public void getWinningMoney() {
-        // given
-        Normal normal = Normal.of(CardsTest.createCards(CardTest.ofClubs(Card.Rank.TEN)));
-
-        // when
-        int winningMoney = normal.getWinningMoney(100);
-
-        // then
-        assertThat(winningMoney).isEqualTo(200);
-    }
-
-    @Test
     public void isNotGameOver() {
         // given
         Normal normal = Normal.of(CardsTest.createCards(CardTest.ofClubs(Card.Rank.TEN)));
