@@ -3,6 +3,7 @@ package dev.hongsii.blackjack.io;
 import dev.hongsii.blackjack.model.Card;
 import dev.hongsii.blackjack.model.Dealer;
 import dev.hongsii.blackjack.model.Player;
+import dev.hongsii.blackjack.model.result.Result;
 
 import java.util.List;
 import java.util.StringJoiner;
@@ -35,11 +36,18 @@ public class ConsoleOutput {
         printWithNewline(printingCards.toString() + " (" + totalScore + ")");
     }
 
-    public static void displayResult(boolean isWin) {
-        if (isWin) {
-            printWithNewline("플레이어가 이겼습니다.");
-        } else {
-            printWithNewline("딜러가 이겼습니다.");
+    public static void displayResult(Result result) {
+        printWithNewline("");
+        switch (result.getResult()) {
+            case "WIN":
+                printWithNewline("승리");
+                break;
+            case "PUSH":
+                printWithNewline("무승부");
+                break;
+            case "LOSE":
+                printWithNewline("패배");
+                break;
         }
         printWithNewline("");
     }

@@ -1,7 +1,7 @@
 package dev.hongsii.blackjack.model;
 
 import dev.hongsii.blackjack.model.hand.Hand;
-import dev.hongsii.blackjack.model.result.WinningResult;
+import dev.hongsii.blackjack.model.result.Result;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 
@@ -48,21 +48,10 @@ public class Player implements CardReceiver {
         return hand.isGameOver();
     }
 
-    public boolean winTo(CardMatcher cardMatcher) {
-        boolean isWin = !cardMatcher.win(hand);
-        if (isWin) {
-            money += hand.getWinningMoney(bettingMoney);
-        }
-        return isWin;
-    }
-
-    public WinningResult winTo2(CardMatcher cardMatcher) {
-        cardMatcher.win(hand);
-//        if ()
-//        boolean isWin = !cardMatcher.win(hand);
-//        if (isWin) {
-//            money += hand.getWinningMoney(bettingMoney);
-//        }
+    public Result winTo(CardMatcher cardMatcher) {
+        Result result = cardMatcher.match(hand);
+        money += result.getWinningMoney(bettingMoney);
+        return result;
     }
 
     public List<Card> getCards() {

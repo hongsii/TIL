@@ -1,6 +1,7 @@
 package dev.hongsii.blackjack.model;
 
 import dev.hongsii.blackjack.exception.GameOverException;
+import dev.hongsii.blackjack.model.result.Result;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -50,7 +51,7 @@ public class BlackjackGame {
         }
     }
 
-    public boolean winToDealer(Player player) {
+    public Result winToDealer(Player player) {
         return player.winTo(dealer);
     }
 }

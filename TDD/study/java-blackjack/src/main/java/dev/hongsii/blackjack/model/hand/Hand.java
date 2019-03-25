@@ -22,18 +22,23 @@ public abstract class Hand {
         return cards.getCards();
     }
 
+    public boolean isSameScore(Hand hand) {
+        return isSameScore(hand.getTotalScore());
+    }
+
     public boolean isSameScore(int score) {
         return cards.isSameScore(score);
     }
 
-    public boolean isLargerThan(Hand hand) {
-        return isLargerThan(hand.cards.getTotalScore());
+    public boolean isLargerScore(Hand hand) {
+        return isLargerScore(hand.getTotalScore());
     }
 
-    public boolean isLargerThan(int score) {
+    public boolean isLargerScore(int score) {
         return cards.isLagerThan(score);
     }
 
+    @Deprecated
     public int getWinningMoney(int money) {
         double winningMoney = money + (money * getWinningMoneyRate());
         return (int) Math.round(winningMoney);

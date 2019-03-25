@@ -2,8 +2,9 @@ package dev.hongsii.blackjack.model;
 
 import dev.hongsii.blackjack.model.hand.Hand;
 import dev.hongsii.blackjack.model.result.Lose;
+import dev.hongsii.blackjack.model.result.Push;
+import dev.hongsii.blackjack.model.result.Result;
 import dev.hongsii.blackjack.model.result.Win;
-import dev.hongsii.blackjack.model.result.WinningResult;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 
@@ -43,28 +44,21 @@ public class Dealer implements CardReceiver, CardMatcher {
     }
 
     private boolean canNotReceive() {
-        return hand.isSameScore(SCORE_FOR_RECEIVE) || hand.isLargerThan(SCORE_FOR_RECEIVE);
+        return hand.isSameScore(SCORE_FOR_RECEIVE) || hand.isLargerScore(SCORE_FOR_RECEIVE);
     }
 
     @Override
-    public boolean win(Hand other) {
-        if (other.isBust()) {
-            return true;
+    public Result match(Hand target) {
+        if (target.isBust()) {
+            return Lose.getInstance();
         }
         if (hand.isBust()) {
-            return false;
+            return Win.of(target);
         }
-        return hand.isLargerThan(other);
-    }
-
-    public WinningResult win2(Hand other) {
-        if (other.isBust()) {
-            return new Win(hand);
+        if (target.isSameScore(hand)) {
+            return Push.getInstance();
         }
-        if (hand.isBust()) {
-            return new Lose();
-        }
-        return (hand.isLargerThan(other))? new Win(hand):new Lose();
+        return (target.isLargerScore(hand)) ? Win.of(target) : Lose.getInstance();
     }
 
     public List<Card> getCards() {

@@ -14,7 +14,7 @@ public class WinTest {
     @Test
     public void getWinningMoneyWhenHandIsNormal() {
         // given
-        Win win = new Win(Normal.of(CardsTest.createCards(CardTest.ofClubs(Card.Rank.FOUR))));
+        Win win = Win.of(Normal.of(CardsTest.createCards(CardTest.ofClubs(Card.Rank.FOUR))));
 
         // when
         int bettingMoney = 1000;
@@ -28,7 +28,7 @@ public class WinTest {
     public void getWinningMoneyWhenHandIsBlackjack() {
         // given
         Blackjack blackjack = Blackjack.of(CardsTest.BLACKJACK);
-        Win win = new Win(blackjack);
+        Win win = Win.of(blackjack);
 
         // when
         int bettingMoney = 1000;

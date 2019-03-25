@@ -2,6 +2,10 @@ package dev.hongsii.blackjack.model;
 
 import dev.hongsii.blackjack.model.hand.Bust;
 import dev.hongsii.blackjack.model.hand.Normal;
+import dev.hongsii.blackjack.model.result.Lose;
+import dev.hongsii.blackjack.model.result.Push;
+import dev.hongsii.blackjack.model.result.Result;
+import dev.hongsii.blackjack.model.result.Win;
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -58,46 +62,62 @@ public class DealerTest {
     }
 
     @Test
-    public void win() {
-        // given
-        Dealer dealer = Dealer.of(Normal.of(CardsTest.createCards(CardTest.ofClubs(Card.Rank.TEN))));
-
-        // when
-        boolean isWin = dealer.win(Normal.of(CardsTest.createCards(CardTest.ofClubs(Card.Rank.NINE))));
-
-        assertThat(isWin).isTrue();
-    }
-
-    @Test
-    public void loseWhenTargetIsLarger() {
+    public void matchWhenPlayerWins() {
         // given
         Dealer dealer = Dealer.of(Normal.of(CardsTest.createCards(CardTest.ofClubs(Card.Rank.NINE))));
 
         // when
-        boolean isWin = dealer.win(Normal.of(CardsTest.createCards(CardTest.ofClubs(Card.Rank.TEN))));
+        Result result = dealer.match(Normal.of(CardsTest.createCards(CardTest.ofClubs(Card.Rank.TEN))));
 
-        assertThat(isWin).isFalse();
+        // then
+        assertThat(result).isEqualTo(Win.of(Normal.of(CardsTest.createCards(CardTest.ofClubs(Card.Rank.TEN)))));
     }
 
     @Test
-    public void winWhenTargetIsBust() {
+    public void matchWhenPlayerLoses() {
         // given
         Dealer dealer = Dealer.of(Normal.of(CardsTest.createCards(CardTest.ofClubs(Card.Rank.TEN))));
 
         // when
-        boolean isWin = dealer.win(Bust.of(CardsTest.createCards(CardTest.ofClubs(Card.Rank.TEN), CardTest.ofClubs(Card.Rank.TEN), CardTest.ofClubs(Card.Rank.TEN))));
+        Result result = dealer.match(Normal.of(CardsTest.createCards(CardTest.ofClubs(Card.Rank.NINE))));
 
-        assertThat(isWin).isTrue();
+        // then
+        assertThat(result).isEqualTo(Lose.getInstance());
     }
 
     @Test
-    public void loseWhenDealerIsBust() {
+    public void matchWhenPlayerIsBust() {
+        // given
+        Dealer dealer = Dealer.of(Normal.of(CardsTest.createCards(CardTest.ofClubs(Card.Rank.TEN))));
+
+        // when
+        Result result = dealer.match(Bust.of(CardsTest.createCards(CardTest.ofClubs(Card.Rank.TEN), CardTest.ofClubs(Card.Rank.TEN), CardTest.ofClubs(Card.Rank.TEN))));
+
+        // then
+        assertThat(result).isEqualTo(Lose.getInstance());
+    }
+
+    @Test
+    public void matchWhenDealerIsBust() {
         // given
         Dealer dealer = Dealer.of(Bust.of(CardsTest.createCards(CardTest.ofClubs(Card.Rank.TEN), CardTest.ofClubs(Card.Rank.TEN), CardTest.ofClubs(Card.Rank.TEN))));
 
         // when
-        boolean isWin = dealer.win(Normal.of(CardsTest.createCards(CardTest.ofClubs(Card.Rank.TEN))));
+        Result result = dealer.match(Normal.of(CardsTest.createCards(CardTest.ofClubs(Card.Rank.TEN))));
 
-        assertThat(isWin).isFalse();
+        // then
+        assertThat(result).isEqualTo(Win.of(Normal.of(CardsTest.createCards(CardTest.ofClubs(Card.Rank.TEN)))));
+    }
+
+    @Test
+    public void matchWhenEachScoreEquals() {
+        // given
+        Dealer dealer = Dealer.of(Normal.of(CardsTest.createCards(CardTest.ofClubs(Card.Rank.TEN))));
+
+        // when
+        Result result = dealer.match(Normal.of(CardsTest.createCards(CardTest.ofClubs(Card.Rank.TEN))));
+
+        // then
+        assertThat(result).isEqualTo(Push.getInstance());
     }
 }

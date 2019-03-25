@@ -9,7 +9,7 @@ public class PushTest {
     @Test
     public void getWinningMoney() {
         // given
-        Push push = new Push();
+        Push push = Push.getInstance();
 
         // when
         int bettingMoney = 1000;

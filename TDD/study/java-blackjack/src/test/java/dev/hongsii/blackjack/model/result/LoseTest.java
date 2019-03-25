@@ -9,7 +9,7 @@ public class LoseTest {
     @Test
     public void getWinningMoney() {
         // given
-        Lose lose = new Lose();
+        Lose lose = Lose.getInstance();
 
         // when
         int bettingMoney = 1000;
