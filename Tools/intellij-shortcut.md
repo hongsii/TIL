@@ -28,6 +28,18 @@
 
 * `Reopen Closed Tab` : Main menu > Window > Editor Tabs > Reopen Closed Tab
 
+#### 모든 탭 닫기
+
+* `Close All` : Main menu > Window > Editor Tabs > Close All
+
+#### 탭 조작하기
+
+* `Split Vertically` : Main menu > Window > Editor Tabs > Split Vertically (현재 열린 탭을 수직으로 화면 분할)
+* `Split Horizontally` : Main menu > Window > Editor Tabs > Split Horizontally (현재 열린 탭을 수평으로 화면 분할)
+* `Move Right` : Main menu > Window > Editor Tabs > Move Right (현재 탭을 오른쪽으로 이동해서 화면 분할)
+* `Move Down` : Main menu > Window > Editor Tabs > Move Down (현재 탭을 아래쪽으로 이동해서 화면 분할)
+
+
 #### 멀티 커서
 
 동시에 여러 라인을 수정하기 위한 커서 설정
