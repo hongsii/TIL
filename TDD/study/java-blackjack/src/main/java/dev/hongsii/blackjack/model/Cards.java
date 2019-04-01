@@ -7,6 +7,7 @@ import lombok.EqualsAndHashCode;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
@@ -29,14 +30,18 @@ public class Cards {
 
     public int getTotalScore() {
         int totalScore = 0;
-        List<Card> notSpecialScoreCards = cards.stream().filter(Card::hasNotSpecialScore).collect(Collectors.toList());
-        totalScore = sum(totalScore, notSpecialScoreCards);
-        List<Card> specialScoreCards = cards.stream().filter(Card::hasSpecialScore).collect(Collectors.toList());
-        totalScore = sum(totalScore, specialScoreCards);
+        totalScore = sumCards(totalScore, filterCards(Card::hasNotSpecialScore));
+        totalScore = sumCards(totalScore, filterCards(Card::hasSpecialScore));
         return totalScore;
     }
 
-    private int sum(int totalScore, List<Card> cards) {
+    private List<Card> filterCards(Predicate<Card> cardPredicate) {
+        return cards.stream()
+                .filter(cardPredicate)
+                .collect(Collectors.toList());
+    }
+
+    private int sumCards(int totalScore, List<Card> cards) {
         for (Card card : cards) {
             totalScore = card.sum(totalScore);
         }
@@ -59,3 +64,4 @@ public class Cards {
         return Collections.unmodifiableList(cards);
     }
 }
+
