@@ -31,7 +31,7 @@ public class ConsoleOutput {
         printWithNewline(String.format("== %s의 패 ==", name));
         StringJoiner printingCards = new StringJoiner(" / ");
         for (Card card : cards) {
-            printingCards.add(card.toString());
+            printingCards.add(new CardCharacter(card).toString());
         }
         printWithNewline(printingCards.toString() + " (" + totalScore + ")");
     }

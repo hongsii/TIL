@@ -16,7 +16,7 @@ public class CardsTest {
         Cards cards = Cards.initialize();
 
         // when
-        cards.add(new Card(Card.Suit.CLUBS, Card.Rank.EIGHT));
+        cards.add(Card.of(Card.Suit.CLUBS, Card.Rank.EIGHT));
 
         // then
         assertThat(cards.getTotalScore()).isEqualTo(8);
@@ -26,8 +26,8 @@ public class CardsTest {
     public void getTotalScoreWhenAceIsEleven() {
         // given
         Cards cards = Cards.of(asList(
-                new Card(Card.Suit.CLUBS, Card.Rank.ACE),
-                new Card(Card.Suit.CLUBS, Card.Rank.TEN)
+                Card.of(Card.Suit.CLUBS, Card.Rank.ACE),
+                Card.of(Card.Suit.CLUBS, Card.Rank.TEN)
         ));
 
         // when
@@ -41,9 +41,9 @@ public class CardsTest {
     public void getTotalScoreWhenAceIsElevenAndHasThreeCard() {
         // given
         Cards cards = Cards.of(asList(
-                new Card(Card.Suit.CLUBS, Card.Rank.FIVE),
-                new Card(Card.Suit.CLUBS, Card.Rank.ACE),
-                new Card(Card.Suit.CLUBS, Card.Rank.QUEEN)
+                Card.of(Card.Suit.CLUBS, Card.Rank.FIVE),
+                Card.of(Card.Suit.CLUBS, Card.Rank.ACE),
+                Card.of(Card.Suit.CLUBS, Card.Rank.QUEEN)
         ));
 
         // when
@@ -57,8 +57,8 @@ public class CardsTest {
     public void getTotalScoreWhenHasOnlyTwoAce() {
         // given
         Cards cards = Cards.of(asList(
-                new Card(Card.Suit.CLUBS, Card.Rank.ACE),
-                new Card(Card.Suit.CLUBS, Card.Rank.ACE)
+                Card.of(Card.Suit.CLUBS, Card.Rank.ACE),
+                Card.of(Card.Suit.CLUBS, Card.Rank.ACE)
         ));
 
         // when

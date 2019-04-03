@@ -1,22 +1,18 @@
 package dev.hongsii.blackjack.model;
 
 import dev.hongsii.blackjack.model.hand.Blackjack;
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
+import lombok.*;
 
 import java.util.Optional;
 
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@Getter
 @EqualsAndHashCode
+@ToString
 public class Card {
 
     private Suit suit;
     private Rank rank;
-
-    public Card(Suit suit, Rank rank) {
-        this.suit = suit;
-        this.rank = rank;
-    }
 
     public static Card of(Suit suit, Rank rank) {
         return new Card(suit, rank);
@@ -34,11 +30,6 @@ public class Card {
         return rank.score;
     }
 
-    @Override
-    public String toString() {
-        return "[" + suit.character + "" + rank.character + "]";
-    }
-
     public boolean hasSpecialScore() {
         return rank.hasSpecialScore();
     }
@@ -50,13 +41,9 @@ public class Card {
     /**
      * 카드 문양
      */
-    @AllArgsConstructor
     public enum Suit {
 
-        CLUBS("︎♣︎"), DIAMONDS("♦︎"), HEARTS("♥︎"), SPADES("♠︎");
-
-        @Getter
-        private String character;
+        CLUBS, DIAMONDS, HEARTS, SPADES
     }
 
     /**
@@ -64,7 +51,7 @@ public class Card {
      */
     public enum Rank {
 
-        ACE(1, 11, "A"),
+        ACE(1, 11),
         TWO(2),
         THREE(3),
         FOUR(4),
@@ -74,26 +61,20 @@ public class Card {
         EIGHT(8),
         NINE(9),
         TEN(10),
-        JACK(10, "J"),
-        QUEEN(10, "Q"),
-        KING(10, "K");
+        JACK(10),
+        QUEEN(10),
+        KING(10);
 
         private int score;
         private Optional<Integer> specialScore;
-        private String character;
 
         Rank(int score) {
-            this(score, null, Integer.toString(score));
+            this(score, null);
         }
 
-        Rank(int score, String character) {
-            this(score, null, character);
-        }
-
-        Rank(int score, Integer specialScore, String character) {
+        Rank(int score, Integer specialScore) {
             this.score = score;
             this.specialScore = Optional.ofNullable(specialScore);
-            this.character = character;
         }
 
         public int sum(int score) {

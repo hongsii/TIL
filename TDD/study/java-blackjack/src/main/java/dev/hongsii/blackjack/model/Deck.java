@@ -35,7 +35,7 @@ public class Deck {
 
     private static Stack<Card> createCards() {
         return Arrays.stream(Card.Suit.values())
-                    .flatMap(suit -> Arrays.stream(Card.Rank.values()).map(rank -> new Card(suit, rank)))
+                    .flatMap(suit -> Arrays.stream(Card.Rank.values()).map(rank -> Card.of(suit, rank)))
                     .collect(Collectors.toCollection(Stack::new));
     }
 
