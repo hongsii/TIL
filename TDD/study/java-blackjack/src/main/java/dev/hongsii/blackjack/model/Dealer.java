@@ -32,19 +32,19 @@ public class Dealer implements CardReceiver, CardMatcher {
 
     @Override
     public void receive(Card card) {
-        if (canNotReceive()) {
+        if (!canReceive()) {
             throw new IllegalStateException("더 이상 카드를 받을 수 없습니다.");
         }
         hand = hand.add(card);
     }
 
     @Override
-    public boolean isGameOver() {
-        return hand.isGameOver();
+    public boolean canReceive() {
+        return isLessThanScoreForReceive() || !hand.isGameOver();
     }
 
-    private boolean canNotReceive() {
-        return hand.isSameScore(SCORE_FOR_RECEIVE) || hand.isLargerScore(SCORE_FOR_RECEIVE);
+    private boolean isLessThanScoreForReceive() {
+        return hand.getTotalScore() < SCORE_FOR_RECEIVE;
     }
 
     @Override

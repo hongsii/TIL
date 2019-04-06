@@ -4,6 +4,7 @@ import dev.hongsii.blackjack.exception.GameOverException;
 import dev.hongsii.blackjack.io.ConsoleInput;
 import dev.hongsii.blackjack.io.ConsoleOutput;
 import dev.hongsii.blackjack.model.BlackjackGame;
+import dev.hongsii.blackjack.model.Dealer;
 
 public class BlackjackGameConsole {
 
@@ -21,11 +22,10 @@ public class BlackjackGameConsole {
                 ConsoleOutput.displayHandOfPlayer(blackjackGame.getPlayer());
 
                 // 추가로 카드를 뽑는다.
-                blackjackGame.validateHand(blackjackGame.getPlayer());
                 hitFromPlayer(blackjackGame);
                 hitFromDealer(blackjackGame);
             } catch (GameOverException e) {
-                // 누군가 블랙잭 또는 버스트
+                // 게임 종료
             } finally {
                 // 결과를 확인한다.
                 ConsoleOutput.displayHandOfDealer(blackjackGame.getDealer());
@@ -36,24 +36,21 @@ public class BlackjackGameConsole {
     }
 
     private static void hitFromPlayer(BlackjackGame blackjackGame) {
-            while (true) {
-                blackjackGame.validateHand(blackjackGame.getPlayer());
-                boolean isHit = ConsoleInput.inputPlayerInputForHit();
-                if (!isHit) {
-                    break;
-                }
-                blackjackGame.hit(blackjackGame.getPlayer());
-                ConsoleOutput.displayHandOfPlayer(blackjackGame.getPlayer());
+        while (true) {
+            blackjackGame.validateHand(blackjackGame.getPlayer());
+            boolean isHit = ConsoleInput.inputPlayerInputForHit();
+            if (!isHit) {
+                break;
             }
+            blackjackGame.hit(blackjackGame.getPlayer());
+            ConsoleOutput.displayHandOfPlayer(blackjackGame.getPlayer());
+        }
     }
 
     private static void hitFromDealer(BlackjackGame blackjackGame) {
-        try {
-            while (true) {
-                blackjackGame.hit(blackjackGame.getDealer());
-            }
-        } catch (IllegalStateException e) {
-            // 카드를 다뽑음
+        Dealer dealer = blackjackGame.getDealer();
+        while (dealer.canReceive()) {
+            blackjackGame.hit(dealer);
         }
     }
 

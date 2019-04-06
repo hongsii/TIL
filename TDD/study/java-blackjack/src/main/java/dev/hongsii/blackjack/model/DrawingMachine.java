@@ -19,12 +19,9 @@ public class DrawingMachine {
     }
 
     private void drawToCardReceiver(CardReceiver cardReceiver) {
-        Card card = deck.draw();
-        try {
-            cardReceiver.receive(card);
-        } catch (Exception e) {
-            deck.push(card);
-            throw new IllegalStateException("더 이상 카드를 뽑을 수 없습니다.");
+        if (!cardReceiver.canReceive()) {
+            throw new IllegalStateException("더 이상 카드를 받을 수 없습니다.");
         }
+        cardReceiver.receive(deck.draw());
     }
 }

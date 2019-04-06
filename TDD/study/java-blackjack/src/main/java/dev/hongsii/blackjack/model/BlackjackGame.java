@@ -46,7 +46,7 @@ public class BlackjackGame {
     }
 
     public void validateHand(CardReceiver cardReceiver) {
-        if (cardReceiver.isGameOver()) {
+        if (!cardReceiver.canReceive()) {
             throw new GameOverException();
         }
     }

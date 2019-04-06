@@ -37,8 +37,8 @@ public class Player implements CardReceiver {
     }
 
     @Override
-    public boolean isGameOver() {
-        return hand.isGameOver();
+    public boolean canReceive() {
+        return !hand.isGameOver();
     }
 
     public Result winTo(CardMatcher cardMatcher) {
