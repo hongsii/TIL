@@ -39,11 +39,11 @@ public class Normal extends Hand {
 
     @Override
     public boolean isBlackjack() {
-        return false;
+        return Blackjack.isValid(cards);
     }
 
     @Override
     public boolean isBust() {
-        return false;
+        return Bust.isValid(cards);
     }
 }

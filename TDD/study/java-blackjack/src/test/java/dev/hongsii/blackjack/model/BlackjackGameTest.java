@@ -12,7 +12,7 @@ public class BlackjackGameTest {
 
     @Before
     public void setUp() throws Exception {
-        blackjackGame = BlackjackGame.initializeWithSingleDeck();
+        blackjackGame = BlackjackGame.initializeWithSingleDeck(2);
     }
 
     @Test
@@ -22,13 +22,17 @@ public class BlackjackGameTest {
 
         // then
         assertThat(blackjackGame.getDealer().getCards()).hasSize(BlackjackGame.DEFAULT_DRAW_COUNT);
-        assertThat(blackjackGame.getPlayer().getCards()).hasSize(BlackjackGame.DEFAULT_DRAW_COUNT);
+        for (Player player : blackjackGame.getPlayers()) {
+            assertThat(player.getCards()).hasSize(BlackjackGame.DEFAULT_DRAW_COUNT);
+        }
     }
 
     @Test
     public void receiveAdditionalCardWhenHit() {
-        blackjackGame.hit(blackjackGame.getPlayer());
+        for (Player player : blackjackGame.getPlayers()) {
+            blackjackGame.hit(player);
+            assertThat(player.getCards()).hasSize(BlackjackGame.ADDITIONAL_DRAW_COUNT);
+        }
 
-        assertThat(blackjackGame.getPlayer().getCards()).hasSize(BlackjackGame.ADDITIONAL_DRAW_COUNT);
     }
 }

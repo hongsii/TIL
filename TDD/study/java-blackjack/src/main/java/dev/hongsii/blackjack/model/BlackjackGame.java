@@ -5,6 +5,9 @@ import dev.hongsii.blackjack.model.result.Result;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @AllArgsConstructor
 public class BlackjackGame {
 
@@ -17,10 +20,37 @@ public class BlackjackGame {
     @Getter
     private Player player;
 
+    public BlackjackGame(DrawingMachine drawingMachine, Dealer dealer, Player player) {
+        this.drawingMachine = drawingMachine;
+        this.dealer = dealer;
+        this.player = player;
+    }
+
+    public BlackjackGame(DrawingMachine drawingMachine, Dealer dealer, List<Player> players) {
+        this.drawingMachine = drawingMachine;
+        this.dealer = dealer;
+        this.players = players;
+    }
+
+    @Getter
+    private List<Player> players;
+
     public static BlackjackGame initializeWithSingleDeck() {
         Deck deck = Deck.ofSingle();
         deck.shuffle();
         return new BlackjackGame(DrawingMachine.of(deck), Dealer.create(), Player.create());
+    }
+
+    public static BlackjackGame initializeWithSingleDeck(int countOfPlayer) {
+        Deck deck = Deck.ofSingle();
+        deck.shuffle();
+
+        List<Player> players = new ArrayList<>(countOfPlayer);
+        for (int number = 1; number <= countOfPlayer; number++) {
+            players.add(Player.create(number));
+        }
+
+        return new BlackjackGame(DrawingMachine.of(deck), Dealer.create(), players);
     }
 
     public void bet(Player player, int money) {
@@ -30,7 +60,10 @@ public class BlackjackGame {
     public void deal() {
         dealer.reset();
         dealTo(dealer);
-        dealTo(player);
+
+        for (Player player : players) {
+            dealTo(player);
+        }
     }
 
     private void dealTo(CardReceiver cardReceiver) {

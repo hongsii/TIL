@@ -24,7 +24,7 @@ public class ConsoleOutput {
     }
 
     public static void displayHandOfPlayer(Player player) {
-        displayHand("플레이어", player.getCards(), player.getTotalScore());
+        displayHand("플레이어 " + player.getNumber(), player.getCards(), player.getTotalScore());
     }
 
     private static void displayHand(String name, List<Card> cards, int totalScore) {

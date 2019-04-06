@@ -5,12 +5,15 @@ import dev.hongsii.blackjack.model.hand.Ready;
 import dev.hongsii.blackjack.model.result.Result;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 
 import java.util.List;
 
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class Player implements CardReceiver {
 
+    @Getter
+    private int number;
     private Hand hand;
     private Money money;
 
@@ -18,12 +21,24 @@ public class Player implements CardReceiver {
         return of(Ready.noBetting());
     }
 
+    public static Player create(int number) {
+        return of(number, Ready.noBetting());
+    }
+
+    public static Player of(int number, Hand hand) {
+        return of(number, hand, Money.ofDefault());
+    }
+
     public static Player of(Hand hand) {
         return Player.of(hand, Money.ofDefault());
     }
 
     public static Player of(Hand hand, Money money) {
-        return new Player(hand, money);
+        return new Player(1, hand, money);
+    }
+
+    public static Player of(int number, Hand hand, Money money) {
+        return new Player(number, hand, money);
     }
 
     public void bet(int bettingMoney) {

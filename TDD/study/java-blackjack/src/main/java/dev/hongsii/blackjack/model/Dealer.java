@@ -40,7 +40,7 @@ public class Dealer implements CardReceiver, CardMatcher {
 
     @Override
     public boolean canReceive() {
-        return isLessThanScoreForReceive() || !hand.isGameOver();
+        return isLessThanScoreForReceive();
     }
 
     private boolean isLessThanScoreForReceive() {
