@@ -42,7 +42,7 @@ public class CardCharacter {
         FIVE(Card.Rank.FIVE, "5"),
         SIX(Card.Rank.SIX, "6"),
         SEVEN(Card.Rank.SEVEN, "7"),
-        EIGHT(Card.Rank.EIGHT, "8j"),
+        EIGHT(Card.Rank.EIGHT, "8"),
         NINE(Card.Rank.NINE, "9"),
         TEN(Card.Rank.TEN, "10"),
         JACK(Card.Rank.JACK, "J"),

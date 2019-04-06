@@ -5,10 +5,6 @@ import dev.hongsii.blackjack.model.Cards;
 
 public class Bust extends Hand {
 
-    private Bust(Cards cards) {
-        super(cards);
-    }
-
     private Bust(Cards cards, int bettingMoney) {
         super(cards, bettingMoney);
     }

@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Stack;
 import java.util.stream.Collectors;
@@ -24,7 +25,7 @@ public class Deck {
 
     public static Deck ofDouble() {
         Stack<Card> totalDeck = Stream.of(createCards(), createCards())
-                .flatMap(deck -> deck.stream())
+                .flatMap(Collection::stream)
                 .collect(Collectors.toCollection(Stack::new));
         return of(totalDeck);
     }
@@ -52,9 +53,5 @@ public class Deck {
 
     public int size() {
         return deck.size();
-    }
-
-    public void push(Card card) {
-        deck.push(card);
     }
 }
