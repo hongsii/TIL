@@ -16,13 +16,13 @@ public class PlayerTest {
 
     @Before
     public void setUp() throws Exception {
-        player = Player.of(Normal.of(CardsTest.createCards(CardTest.ofClubs(Card.Rank.TEN))));
+        player = Player.of(1, Normal.of(CardsTest.createCards(CardTest.ofClubs(Card.Rank.TEN))));
     }
 
     @Test
     public void bet() {
         // given
-        Player player = Player.create();
+        Player player = Player.create(1);
 
         // when
         player.bet(500);
@@ -44,7 +44,7 @@ public class PlayerTest {
     public void win() {
         // given
         Normal hand = Normal.of(CardsTest.createCards(CardTest.ofClubs(Card.Rank.TEN)), 500);
-        player = Player.of(hand, Money.of(0));
+        player = Player.of(1, hand, Money.of(0));
         Dealer dealer = Dealer.of(Normal.of(CardsTest.createCards(CardTest.ofClubs(Card.Rank.NINE))));
 
         // when
@@ -59,7 +59,7 @@ public class PlayerTest {
     public void winWhenDealerIsBust() {
         // given
         Normal hand = Normal.of(CardsTest.createCards(CardTest.ofClubs(Card.Rank.TEN)), 500);
-        player = Player.of(hand, Money.of(0));
+        player = Player.of(1, hand, Money.of(0));
         Dealer dealer = Dealer.of(Bust.of(CardsTest.BUST));
 
         // when
@@ -74,7 +74,7 @@ public class PlayerTest {
     public void lose() {
         // given
         Normal hand = Normal.of(CardsTest.createCards(CardTest.ofClubs(Card.Rank.EIGHT)), 500);
-        player = Player.of(hand, Money.of(0));
+        player = Player.of(1, hand, Money.of(0));
         Dealer dealer = Dealer.of(Normal.of(CardsTest.createCards(CardTest.ofClubs(Card.Rank.NINE))));
 
         // when

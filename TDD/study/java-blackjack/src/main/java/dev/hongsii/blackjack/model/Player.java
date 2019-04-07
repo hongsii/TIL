@@ -17,20 +17,12 @@ public class Player implements CardReceiver {
     private Hand hand;
     private Money money;
 
-    public static Player create() {
-        return of(Ready.noBetting());
-    }
-
     public static Player create(int number) {
         return of(number, Ready.noBetting());
     }
 
     public static Player of(int number, Hand hand) {
         return of(number, hand, Money.ofDefault());
-    }
-
-    public static Player of(Hand hand) {
-        return Player.of(hand, Money.ofDefault());
     }
 
     public static Player of(Hand hand, Money money) {

@@ -16,7 +16,7 @@ public class DrawingMachineTest {
                 CardTest.ofSpades(Card.Rank.FOUR)
         ));
         DrawingMachine drawingMachine = DrawingMachine.of(deck);
-        Player player = Player.create();
+        Player player = Player.create(1);
 
         // when
         int drawCount = 2;
