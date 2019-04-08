@@ -19,6 +19,7 @@ public class BlackjackGame {
     private Dealer dealer;
     @Getter
     private List<Player> players;
+    private BettingTable bettingTable;
 
     public static BlackjackGame initializeWithSingleDeck(int countOfPlayer) {
         Deck deck = Deck.ofSingle();
@@ -26,7 +27,7 @@ public class BlackjackGame {
 
         List<Player> players = createPlayers(countOfPlayer);
 
-        return new BlackjackGame(DrawingMachine.of(deck), Dealer.create(), players);
+        return new BlackjackGame(DrawingMachine.of(deck), Dealer.create(), players, new BettingTable());
     }
 
     private static List<Player> createPlayers(int countOfPlayer) {
@@ -37,14 +38,12 @@ public class BlackjackGame {
         return players;
     }
 
-    public void bet(Player player, int money) {
-        player.bet(money);
+    public void betOnTable(Player player, int bettingMoney) {
+        bettingTable.bet(player, bettingMoney);
     }
 
     public void deal() {
-        dealer.reset();
         dealTo(dealer);
-
         for (Player player : players) {
             dealTo(player);
         }
@@ -63,6 +62,9 @@ public class BlackjackGame {
     }
 
     public Result winToDealer(Player player) {
-        return player.winTo(dealer);
+        Result result = player.winTo(dealer);
+        int winningMoney = result.calculateWinningMoney(bettingTable.getBettingMoney(player));
+        player.applyWinningMoney(winningMoney);
+        return result;
     }
 }

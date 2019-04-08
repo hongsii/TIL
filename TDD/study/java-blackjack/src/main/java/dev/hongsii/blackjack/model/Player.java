@@ -18,7 +18,7 @@ public class Player implements CardReceiver {
     private Money money;
 
     public static Player create(int number) {
-        return of(number, Ready.noBetting());
+        return of(number, Ready.ready());
     }
 
     public static Player of(int number, Hand hand) {
@@ -33,11 +33,6 @@ public class Player implements CardReceiver {
         return new Player(number, hand, money);
     }
 
-    public void bet(int bettingMoney) {
-        money.minus(bettingMoney);
-        hand = Ready.of(bettingMoney);
-    }
-
     @Override
     public void receive(Card card) {
         hand = hand.add(card);
@@ -48,10 +43,17 @@ public class Player implements CardReceiver {
         return !hand.isGameOver();
     }
 
+    @Override
+    public void clear() {
+        hand = Ready.ready();
+    }
+
+    public void applyWinningMoney(int winningMoney) {
+        money.plus(winningMoney);
+    }
+
     public Result winTo(CardMatcher cardMatcher) {
-        Result result = cardMatcher.match(hand);
-        money.plus(result.getWinningMoney());
-        return result;
+        return cardMatcher.match(hand);
     }
 
     public List<Card> getCards() {

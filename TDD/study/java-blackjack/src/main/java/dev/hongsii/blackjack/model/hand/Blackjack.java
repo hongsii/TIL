@@ -8,19 +8,15 @@ public class Blackjack extends Hand {
     public static final int SCORE = 21;
     private static final int COUNT_OF_CARDS = 2;
 
-    private Blackjack(Cards cards, int bettingMoney) {
-        super(cards, bettingMoney);
+    private Blackjack(Cards cards) {
+        super(cards);
     }
 
     public static Blackjack of(Cards cards) {
-        return of(cards, NO_BETTING);
-    }
-
-    public static Blackjack of(Cards cards, int bettingMoney) {
         if (!isValid(cards)) {
             throw new IllegalArgumentException(String.format("점수가 %d가 아니거나, 카드의 개수가 %d개가 아닙니다.", SCORE, COUNT_OF_CARDS));
         }
-        return new Blackjack(cards, bettingMoney);
+        return new Blackjack(cards);
     }
 
     public static boolean isValid(Cards cards) {

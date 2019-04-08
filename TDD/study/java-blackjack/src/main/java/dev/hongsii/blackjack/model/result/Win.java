@@ -9,17 +9,15 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode
 public class Win implements Result {
 
-    private int bettingMoney;
     private double winningMoneyRate;
 
     public static Win from(Hand hand) {
-        return new Win(hand.getBettingMoney(), hand.getWinningMoneyRate());
+        return new Win(hand.getWinningMoneyRate());
     }
 
     @Override
-    public int getWinningMoney() {
-        double winningMoney = bettingMoney + (bettingMoney * winningMoneyRate);
-        return (int) Math.round(winningMoney);
+    public double getWinningMoneyRate() {
+        return winningMoneyRate;
     }
 
     @Override

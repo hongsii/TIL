@@ -17,7 +17,7 @@ public class ReadyTest {
 
     @Before
     public void setUp() throws Exception {
-        ready = Ready.of(0);
+        ready = Ready.ready();
     }
 
     @Test

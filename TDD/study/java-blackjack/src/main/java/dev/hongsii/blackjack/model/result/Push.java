@@ -1,6 +1,5 @@
 package dev.hongsii.blackjack.model.result;
 
-import dev.hongsii.blackjack.model.hand.Hand;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -9,23 +8,22 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode
 public class Push implements Result {
 
-    private int bettingMoney;
-
-    public static Push from(Hand hand) {
-        return of(hand.getBettingMoney());
-    }
-
-    public static Push of(int bettingMoney) {
-        return new Push(bettingMoney);
+    public static Push getInstance() {
+        return Singleton.instance;
     }
 
     @Override
-    public int getWinningMoney() {
-        return bettingMoney;
+    public double getWinningMoneyRate() {
+        return 0;
     }
 
     @Override
     public String getResult() {
         return "PUSH";
+    }
+
+    private static class Singleton {
+
+        private static final Push instance = new Push();
     }
 }

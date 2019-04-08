@@ -15,7 +15,7 @@ public class BlackjackGameConsole {
         while (true) {
             // 플레이어가 배팅한다.
             for (Player player : blackjackGame.getPlayers()) {
-                blackjackGame.bet(player, ConsoleInput.inputBettingMoney(player));
+                blackjackGame.betOnTable(player, ConsoleInput.inputBettingMoney(player));
             }
 
             // 카드를 두장씩 뽑고, 게임 종료 여부 확인

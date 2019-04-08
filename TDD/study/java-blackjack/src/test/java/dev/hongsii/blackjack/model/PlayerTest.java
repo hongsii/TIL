@@ -20,18 +20,6 @@ public class PlayerTest {
     }
 
     @Test
-    public void bet() {
-        // given
-        Player player = Player.create(1);
-
-        // when
-        player.bet(500);
-
-        // then
-        assertThat(player.getMoney()).isEqualTo(0);
-    }
-
-    @Test
     public void receive() {
         // when
         player.receive(CardTest.ofDiamonds(Card.Rank.TWO));
@@ -43,7 +31,7 @@ public class PlayerTest {
     @Test
     public void win() {
         // given
-        Normal hand = Normal.of(CardsTest.createCards(CardTest.ofClubs(Card.Rank.TEN)), 500);
+        Normal hand = Normal.of(CardsTest.createCards(CardTest.ofClubs(Card.Rank.TEN)));
         player = Player.of(1, hand, Money.of(0));
         Dealer dealer = Dealer.of(Normal.of(CardsTest.createCards(CardTest.ofClubs(Card.Rank.NINE))));
 
@@ -52,13 +40,12 @@ public class PlayerTest {
 
         // then
         assertThat(result).isEqualTo(Win.from(hand));
-        assertThat(player.getMoney()).isEqualTo(1000);
     }
 
     @Test
     public void winWhenDealerIsBust() {
         // given
-        Normal hand = Normal.of(CardsTest.createCards(CardTest.ofClubs(Card.Rank.TEN)), 500);
+        Normal hand = Normal.of(CardsTest.createCards(CardTest.ofClubs(Card.Rank.TEN)));
         player = Player.of(1, hand, Money.of(0));
         Dealer dealer = Dealer.of(Bust.of(CardsTest.BUST));
 
@@ -67,13 +54,12 @@ public class PlayerTest {
 
         // then
         assertThat(result).isEqualTo(Win.from(hand));
-        assertThat(player.getMoney()).isEqualTo(1000);
     }
 
     @Test
     public void lose() {
         // given
-        Normal hand = Normal.of(CardsTest.createCards(CardTest.ofClubs(Card.Rank.EIGHT)), 500);
+        Normal hand = Normal.of(CardsTest.createCards(CardTest.ofClubs(Card.Rank.EIGHT)));
         player = Player.of(1, hand, Money.of(0));
         Dealer dealer = Dealer.of(Normal.of(CardsTest.createCards(CardTest.ofClubs(Card.Rank.NINE))));
 
@@ -81,7 +67,6 @@ public class PlayerTest {
         Result result = player.winTo(dealer);
 
         // then
-        assertThat(result).isEqualTo(Lose.from(hand));
-        assertThat(player.getMoney()).isEqualTo(0);
+        assertThat(result).isEqualTo(Lose.getInstance());
     }
 }

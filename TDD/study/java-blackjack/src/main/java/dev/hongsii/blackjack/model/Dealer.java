@@ -19,15 +19,11 @@ public class Dealer implements CardReceiver, CardMatcher {
     private Hand hand;
 
     public static Dealer create() {
-        return of(Ready.noBetting());
+        return of(Ready.ready());
     }
 
     public static Dealer of(Hand hand) {
         return new Dealer(hand);
-    }
-
-    public void reset() {
-        hand = Ready.noBetting();
     }
 
     @Override
@@ -43,6 +39,11 @@ public class Dealer implements CardReceiver, CardMatcher {
         return isLessThanScoreForReceive();
     }
 
+    @Override
+    public void clear() {
+        hand = Ready.ready();
+    }
+
     private boolean isLessThanScoreForReceive() {
         return hand.getTotalScore() < SCORE_FOR_RECEIVE;
     }
@@ -50,15 +51,15 @@ public class Dealer implements CardReceiver, CardMatcher {
     @Override
     public Result match(Hand target) {
         if (target.isBust()) {
-            return Lose.from(target);
+            return Lose.getInstance();
         }
         if (hand.isBust()) {
             return Win.from(target);
         }
         if (target.isSameScore(hand)) {
-            return Push.from(target);
+            return Push.getInstance();
         }
-        return (target.isLargerScore(hand)) ? Win.from(target) : Lose.from(target);
+        return (target.isLargerScore(hand)) ? Win.from(target) : Lose.getInstance();
     }
 
     public List<Card> getCards() {

@@ -15,11 +15,6 @@ public abstract class Hand {
     protected static final int NO_BETTING = 0;
 
     protected Cards cards;
-    protected int bettingMoney;
-
-    protected Hand(Cards cards) {
-        this.cards = cards;
-    }
 
     public boolean isSameScore(Hand hand) {
         return isSameScore(hand.getTotalScore());
@@ -47,10 +42,6 @@ public abstract class Hand {
 
     public List<Card> getCards() {
         return cards.getCards();
-    }
-
-    public int getBettingMoney() {
-        return bettingMoney;
     }
 
     public abstract Hand add(Card card);

@@ -35,4 +35,23 @@ public class BlackjackGameTest {
         }
 
     }
+
+    @Test
+    public void winToDealer() {
+        // given
+        Player player = blackjackGame.getPlayers().stream().findFirst().get();
+        Dealer dealer = blackjackGame.getDealer();
+
+        int currentMoney = player.getMoney();
+        blackjackGame.betOnTable(player, 1000);
+
+        player.receive(CardTest.ofClubs(Card.Rank.TEN));
+        dealer.receive(CardTest.ofClubs(Card.Rank.NINE));
+
+        // when
+        blackjackGame.winToDealer(player);
+
+        // then
+        assertThat(player.getMoney()).isEqualTo(currentMoney + 1000);
+    }
 }

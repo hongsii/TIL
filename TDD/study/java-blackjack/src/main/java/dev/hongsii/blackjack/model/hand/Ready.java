@@ -5,22 +5,18 @@ import dev.hongsii.blackjack.model.Cards;
 
 public class Ready extends Hand {
 
-    private Ready(int money) {
-        super(Cards.initialize(), money);
+    private Ready() {
+        super(Cards.initialize());
     }
 
-    public static Ready noBetting() {
-        return of(NO_BETTING);
-    }
-
-    public static Ready of(int money) {
-        return new Ready(money);
+    public static Ready ready() {
+        return new Ready();
     }
 
     @Override
     public Hand add(Card card) {
         cards.add(card);
-        return Normal.of(cards, bettingMoney);
+        return Normal.of(cards);
     }
 
     @Override
