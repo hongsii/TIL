@@ -16,15 +16,15 @@ public class BlackjackGameTest {
     }
 
     @Test
-    public void drawToEachCardReceiverByDefaultDrawCount() {
+    public void drawByDefaultCountToCardReceiver() {
+        // given
+       Dealer dealer = blackjackGame.getDealer();
+
         // when
-        blackjackGame.deal();
+        blackjackGame.deal(dealer);
 
         // then
-        assertThat(blackjackGame.getDealer().getCards()).hasSize(BlackjackGame.DEFAULT_DRAW_COUNT);
-        for (Player player : blackjackGame.getPlayers()) {
-            assertThat(player.getCards()).hasSize(BlackjackGame.DEFAULT_DRAW_COUNT);
-        }
+        assertThat(dealer.getCards()).hasSize(BlackjackGame.DEFAULT_DRAW_COUNT);
     }
 
     @Test
@@ -33,7 +33,6 @@ public class BlackjackGameTest {
             blackjackGame.hit(player);
             assertThat(player.getCards()).hasSize(BlackjackGame.ADDITIONAL_DRAW_COUNT);
         }
-
     }
 
     @Test

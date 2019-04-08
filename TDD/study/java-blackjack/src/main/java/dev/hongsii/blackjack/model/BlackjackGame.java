@@ -42,23 +42,13 @@ public class BlackjackGame {
         bettingTable.bet(player, bettingMoney);
     }
 
-    public void deal() {
-        dealTo(dealer);
-        for (Player player : players) {
-            dealTo(player);
-        }
-    }
-
-    private void dealTo(CardReceiver cardReceiver) {
-        draw(DEFAULT_DRAW_COUNT, cardReceiver);
+    public void deal(CardReceiver cardReceiver) {
+        cardReceiver.clear();
+        drawingMachine.draw(DEFAULT_DRAW_COUNT, cardReceiver);
     }
 
     public void hit(CardReceiver cardReceiver) {
-        draw(ADDITIONAL_DRAW_COUNT, cardReceiver);
-    }
-
-    private void draw(int drawCount, CardReceiver cardReceiver) {
-        drawingMachine.draw(drawCount, cardReceiver);
+        drawingMachine.draw(ADDITIONAL_DRAW_COUNT, cardReceiver);
     }
 
     public Result winToDealer(Player player) {

@@ -19,12 +19,14 @@ public class BlackjackGameConsole {
             }
 
             // 카드를 두장씩 뽑고, 게임 종료 여부 확인
-            blackjackGame.deal();
+            blackjackGame.deal(blackjackGame.getDealer());
             ConsoleOutput.displayHandOfDealerOnlyOneCard(blackjackGame.getDealer());
             for (Player player : blackjackGame.getPlayers()) {
+                blackjackGame.deal(player);
                 ConsoleOutput.displayHandOfPlayer(player);
             }
 
+            // 추가로 카드 뽑기
             hitFromDealer(blackjackGame);
             for (Player player : blackjackGame.getPlayers()) {
                 hitFromPlayer(blackjackGame, player);
