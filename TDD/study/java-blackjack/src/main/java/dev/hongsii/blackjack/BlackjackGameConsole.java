@@ -19,6 +19,7 @@ public class BlackjackGameConsole {
             }
 
             // 딜러와 각 플레이어는 카드를 각각 두장씩 뽑는다.
+            ConsoleOutput.printVerticalLine();
             blackjackGame.deal(blackjackGame.getDealer());
             ConsoleOutput.displayHandOfDealerOnlyOneCard(blackjackGame.getDealer());
             for (Player player : blackjackGame.getPlayers()) {
@@ -29,25 +30,29 @@ public class BlackjackGameConsole {
             // 추가로 카드 뽑기
             hitFromDealer(blackjackGame);
             for (Player player : blackjackGame.getPlayers()) {
+                ConsoleOutput.printVerticalLine();
                 hitFromPlayer(blackjackGame, player);
             }
 
             // 결과를 확인한다.
+            ConsoleOutput.printVerticalLine();
             ConsoleOutput.displayHandOfDealer(blackjackGame.getDealer());
             for (Player player : blackjackGame.getPlayers()) {
                 ConsoleOutput.displayHandOfPlayer(player);
                 ConsoleOutput.displayResult(blackjackGame.winToDealer(player));
+                ConsoleOutput.printVerticalLine();
             }
         }
     }
 
     private static void hitFromPlayer(BlackjackGame blackjackGame, Player player) {
         while (player.canReceive()) {
+            ConsoleOutput.printNewline();
+            ConsoleOutput.displayHandOfPlayer(player);
             boolean hit = ConsoleInput.inputPlayerInputForHit(player);
             if (!hit) break;
 
             blackjackGame.hit(player);
-            ConsoleOutput.displayHandOfPlayer(player);
         }
     }
 

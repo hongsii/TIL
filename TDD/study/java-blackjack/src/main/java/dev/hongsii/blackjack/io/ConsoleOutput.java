@@ -37,16 +37,16 @@ public class ConsoleOutput {
     }
 
     public static void displayResult(Result result) {
-        printWithNewline("");
+        printNewline();
         switch (result.getResult()) {
             case "WIN":
-                printWithNewline("승리");
+                printWithNewline("********* 승리 *********");
                 break;
             case "PUSH":
-                printWithNewline("무승부");
+                printWithNewline("********* 무승부 *********");
                 break;
             case "LOSE":
-                printWithNewline("패배");
+                printWithNewline("********* 패배 *********");
                 break;
         }
         printWithNewline("");
@@ -60,7 +60,15 @@ public class ConsoleOutput {
         System.out.println(str);
     }
 
+    public static void printNewline() {
+        System.out.println();
+    }
+
     public static void print(String str) {
         System.out.print(str);
+    }
+
+    public static void printVerticalLine() {
+        System.out.println("\n------------------------------------");
     }
 }
