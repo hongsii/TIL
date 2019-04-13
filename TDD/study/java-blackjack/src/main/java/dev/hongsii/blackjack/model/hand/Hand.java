@@ -12,8 +12,6 @@ import java.util.List;
 @EqualsAndHashCode
 public abstract class Hand {
 
-    protected static final int NO_BETTING = 0;
-
     protected Cards cards;
 
     public boolean isSameScore(Hand hand) {

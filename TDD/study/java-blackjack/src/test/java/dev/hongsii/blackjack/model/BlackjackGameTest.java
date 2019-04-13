@@ -53,4 +53,9 @@ public class BlackjackGameTest {
         // then
         assertThat(player.getMoney()).isEqualTo(currentMoney + 1000);
     }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void shouldFailPlayerCountMoreThanMaxPlayerCount() {
+        BlackjackGame.initializeWithSingleDeck(BlackjackGame.MAX_PLAYER_COUNT + 1);
+    }
 }

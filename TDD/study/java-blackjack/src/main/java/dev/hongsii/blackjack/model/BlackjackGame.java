@@ -11,6 +11,7 @@ import java.util.List;
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class BlackjackGame {
 
+    public static final int MAX_PLAYER_COUNT = 8;
     public static final int DEFAULT_DRAW_COUNT = 2;
     public static final int ADDITIONAL_DRAW_COUNT = 1;
 
@@ -22,12 +23,13 @@ public class BlackjackGame {
     private BettingTable bettingTable;
 
     public static BlackjackGame initializeWithSingleDeck(int countOfPlayer) {
+        if (countOfPlayer > MAX_PLAYER_COUNT) {
+            throw new IllegalArgumentException(String.format("최대 %d명까지 가능합니다.", MAX_PLAYER_COUNT));
+        }
+
         Deck deck = Deck.ofSingle();
         deck.shuffle();
-
-        List<Player> players = createPlayers(countOfPlayer);
-
-        return new BlackjackGame(DrawingMachine.of(deck), Dealer.create(), players, new BettingTable());
+        return new BlackjackGame(DrawingMachine.of(deck), Dealer.create(), createPlayers(countOfPlayer), new BettingTable());
     }
 
     private static List<Player> createPlayers(int countOfPlayer) {

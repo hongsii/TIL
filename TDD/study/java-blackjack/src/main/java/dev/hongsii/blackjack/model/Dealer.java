@@ -36,16 +36,12 @@ public class Dealer implements CardReceiver, CardMatcher {
 
     @Override
     public boolean canReceive() {
-        return isLessThanScoreForReceive();
+        return hand.getTotalScore() < SCORE_FOR_RECEIVE;
     }
 
     @Override
     public void clear() {
         hand = Ready.ready();
-    }
-
-    private boolean isLessThanScoreForReceive() {
-        return hand.getTotalScore() < SCORE_FOR_RECEIVE;
     }
 
     @Override
