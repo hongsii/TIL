@@ -19,6 +19,10 @@
     * [변수](https://github.com/hongsii/TIL/blob/master/kotlin/variables.md)
     * [함수](https://github.com/hongsii/TIL/blob/master/kotlin/function.md)
 
+## Scala
+    * [요약](https://github.com/hongsii/TIL/blob/master/scala/README.md)
+    * [설치](https://github.com/hongsii/TIL/blob/master/scala/스칼라-설치.md)
+
 ## Spring
 * [묵시적 생성자 주입 순환 참조 해결](https://github.com/hongsii/TIL/blob/master/spring/resolve-circular-dependency-from-constructor-injection.md)
 
