@@ -7,38 +7,42 @@
 * [탭/창](#탭/창-관련)
     * [도구 탭/창 크기 조절](#도구-탭/창-크기-조절)
 * [에디터](#에디터)
-    * [닫은 탭 다시 열기](#닫은-탭-다시-열기)
+    * [탭 분할](#탭-분할)
+    * [탭 이동](#탭-이동)
     * [멀티 커서](#멀티-커서)
 
 ---
 
-### 탭/창
+## 탭/창
 
 #### 도구 탭/창 크기 조절
 
 * `command + shift + 화살표(←↑↓→)` : 화살표 방향으로 탭/창 크기 증가/감소
 * `Terminal` 탭은 터미널 옵션 변경 필요
-    * Tools > Terminal > **Override IDE shortcuts 체크 해제**
+    * Tools > Terminal > Override IDE shortcuts 체크 해제
 
-### 에디터
+---
 
-#### 닫은 탭 다시 열기
+## 에디터
 
-에디터에 열렸던 파일을 다시 여는 명령어. 기본적으로 키가 매핑되지 않아서 매핑 필요
+* 별도로 명시된 위치가 없다면 `Main menu > Window > Editor Tabs`에서 할 수 있음
 
-* `Reopen Closed Tab` : Main menu > Window > Editor Tabs > Reopen Closed Tab
 
-#### 모든 탭 닫기
+* `Close All` : 모든 탭 닫기
+* `Reopen Closed Tab` : 마지막으로 닫은 탭 열기
 
-* `Close All` : Main menu > Window > Editor Tabs > Close All
+#### 탭 분할
+* `Split Vertically` : 현재 열린 탭을 수직으로 화면 분할
+* `Split Horizontally` : 현재 열린 탭을 수평으로 화면 분할
+* `Unsplit` : 분할된 화면 닫기
 
-#### 탭 조작하기
+#### 탭 이동
+* `Move Right` : 현재 탭을 오른쪽으로 이동
+* `Move Down` : 현재 탭을 아래쪽으로 이동
+* `Move To Opposite Group` : 현재 탭을 반대 탭 그룹으로 이동 (`Other > Tabs`에서 설정)
+* `Open In Opposite Group` : 현재 탭을 반대 탭 그룹에서 추가로 열기 (split과 같음) (`Other > Tabs`에서 설정)
 
-* `Split Vertically` : Main menu > Window > Editor Tabs > Split Vertically (현재 열린 탭을 수직으로 화면 분할)
-* `Split Horizontally` : Main menu > Window > Editor Tabs > Split Horizontally (현재 열린 탭을 수평으로 화면 분할)
-* `Move Right` : Main menu > Window > Editor Tabs > Move Right (현재 탭을 오른쪽으로 이동해서 화면 분할)
-* `Move Down` : Main menu > Window > Editor Tabs > Move Down (현재 탭을 아래쪽으로 이동해서 화면 분할)
-
+---
 
 #### 멀티 커서
 
