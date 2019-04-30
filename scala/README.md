@@ -37,7 +37,7 @@ def 함수명(파라미터...): 반환타입 = {
 ```
 
 아래는 파라미터로 `Int` 타입의 파라미터 2개를 받아 더하는 함수 선언
-
+체
 ``` scala
 def sum(a: Int, b: Int): Int = {
     return a + b
@@ -49,3 +49,11 @@ def sum(a: Int, b: Int): Int = {
 ``` scala
 def sum(a: Int, b: Int) = a + b
 ```
+
+## 클래스와 객체
+
+## 기본 타입
+
+## 함수형 객체
+
+## 내장 제어 구문
