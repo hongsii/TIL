@@ -1,3 +1,19 @@
+# Scope Functions
+
+코틀린에는 **객체의 컨텍스트(context)에서 코드 블록을 실행**할 수 있는 5가지의 스코프 함수가 있다.
+
+* `let`
+* `run`
+* `with`
+* `apply`
+* `also`
+
+스코프 함수는 매우 비슷한 구조여서 각 함수별 차이를 이해하는 것이 중요하다.
+
+## Context
+
+스코프 함수에서 객체를 사용하려면 크게 람다ㅇ
+
 # run, with 차이
 
 * run : externsion function
@@ -21,4 +37,5 @@ str?.let {
 
 ## 참고
 
+* [Scope Functions - Kotlin Reference](https://kotlinlang.org/docs/reference/scope-functions.html)
 * [Mastering Kotlin standard functions: run, with, let, also and apply](https://medium.com/@elye.project/mastering-kotlin-standard-functions-run-with-let-also-and-apply-9cd334b0ef84)
