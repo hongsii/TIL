@@ -15,6 +15,29 @@ buildscript {
 }
 ```
 
+-----------
+
+프로젝트를 정의하거나 사용할 때는 `:` 으로 경로를 구분한다.
+
+``` gradle
+# settings.gradle
+rootProject.name = 'multi-module'
+
+include 'api', 'domain', 'services:testService'
+```
+
+디펜던시를 설정할 때 `project(...)` 로 다른 프로젝트를 포함할 수 있다.
+
+``` gradle
+dependencies {
+    project('multi-module:api')
+    project(':api') // 상대 경로 형태로 쓸 수 있다.
+}
+```
+
+-----------
+
+
 * multi module 빌드 순서
 
 루트 프로젝트 buld.gradle에 allprojects, subprojects, project 선언
