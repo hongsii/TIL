@@ -52,5 +52,14 @@ subproject에 build.gradle 존재
 * allprojects로 루트 프로젝트 실행
 * 다음 서브 프로젝트 실행 allprojects -> subprojects -> subproject build.gradle 순으로 실행
 
+-----------
+
+* Gradle 3.0 이후론 기존 의존성 설정 함수가 deprecated 되었음
+    * `compile` -> `implementation` 또는 `api`
+        * 바뀐 2개의 차이점?
+            * 테스트해보고 적기!
+    * `testCompile` -> `testImplementation`
+    * `debugCompile` -> `debugImplementation`
+
 
 * [참고)(https://docs.gradle.org/current/userguide/multi_project_builds.html)
