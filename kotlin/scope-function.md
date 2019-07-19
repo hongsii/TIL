@@ -29,3 +29,8 @@
 
 * [Scope Functions - Kotlin Reference](https://kotlinlang.org/docs/reference/scope-functions.html)
 * [Mastering Kotlin standard functions: run, with, let, also and apply](https://medium.com/@elye.project/mastering-kotlin-standard-functions-run-with-let-also-and-apply-9cd334b0ef84)
+
+---
+
+
+* [the tldr; on Kotlin’s let, apply, also, with and run functions](https://proandroiddev.com/the-tldr-on-kotlins-let-apply-also-with-and-run-functions-6253f06d152b)
