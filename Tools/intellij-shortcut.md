@@ -17,7 +17,7 @@
 
 #### 도구 탭/창 크기 조절
 
-* `command + shift + 화살표(←↑↓→)` : 화살표 방향으로 탭/창 크기 증가/감소
+* `⌘  + ⇧  + 화살표(←↑↓→)` : 화살표 방향으로 탭/창 크기 증가/감소
 * `Terminal` 탭은 터미널 옵션 변경 필요
     * Tools > Terminal > Override IDE shortcuts 체크 해제
 
@@ -27,20 +27,36 @@
 
 * 별도로 명시된 위치가 없다면 `Main menu > Window > Editor Tabs`에서 할 수 있음
 
+#### 탭 관리
 
-* `Close All` : 모든 탭 닫기
-* `Reopen Closed Tab` : 마지막으로 닫은 탭 열기
+아래 단축키는 **별도의 키 매핑이 필요**하며, 괄호 안의 단축키는 현재 개인적으로 매핑한 키
+
+* `Close All` (`⌃ + ⌘  + w`) : 모든 탭 닫기
+* `Reopen Closed Tab` (`⌘ + ⇧ + w`) : 마지막으로 닫은 탭 열기
 
 #### 탭 분할
-* `Split Vertically` : 현재 열린 탭을 수직으로 화면 분할
-* `Split Horizontally` : 현재 열린 탭을 수평으로 화면 분할
-* `Unsplit` : 분할된 화면 닫기
+
+아래 단축키는 **별도의 키 매핑이 필요**하며, 괄호 안의 단축키는 현재 개인적으로 매핑한 키
+
+* `Split Vertically` (`⌥ + ]`) : 현재 열린 탭을 수직으로 화면 분할
+* `Split Horizontally` (`⌥ + [`) : 현재 열린 탭을 수평으로 화면 분할
+* `Unsplit` (`⌥ + ⇧ + ]`) : 분할된 화면 닫기
 
 #### 탭 이동
-* `Move Right` : 현재 탭을 오른쪽으로 이동
-* `Move Down` : 현재 탭을 아래쪽으로 이동
-* `Move To Opposite Group` : 현재 탭을 반대 탭 그룹으로 이동 (`Other > Tabs`에서 설정)
-* `Open In Opposite Group` : 현재 탭을 반대 탭 그룹에서 추가로 열기 (split과 같음) (`Other > Tabs`에서 설정)
+
+아래 단축키는 **별도의 키 매핑이 필요**하며, 괄호 안의 단축키는 현재 개인적으로 매핑한 키
+
+* `Move Right` (`⌃ + ⇧  + ]`) : 현재 탭을 오른쪽으로 이동
+* `Move Down` (`⌃ + ⇧ + [`) : 현재 탭을 아래쪽으로 이동
+* `Move To Opposite Group` (`⌃ + ⇧ + \`) : 현재 탭을 반대 탭 그룹으로 이동 (`Other > Tabs`에서 설정)
+* `Open In Opposite Group` (`⌃ + ⇧ + '`) : 현재 탭을 반대 탭 그룹에서 추가로 열기 (split과 같음) (`Other > Tabs`에서 설정)
+
+#### 기타
+
+* `Parameter Info` (`⌘ + p`) : 파라미터 정보 보기
+* `Qukick Definition` (`⌥  + Space `) : 메소드/함수 내용 팝업으로 보기
+* `Next Method` (`⌃ + ↓`) : 다음 메소드로 이동 (키 충돌이 나는 듯 하여 `⌃ + ⇧  + ↓` 로 변경
+* `Previous Method` (`⌃ + ↑`) : 다음 메소드로 이동 (키 충돌이 나는 듯 하여 `⌃ + ⇧  + ↑` 로 변경
 
 ---
 
