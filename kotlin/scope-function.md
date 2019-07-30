@@ -34,3 +34,7 @@
 
 
 * [the tldr; on Kotlin’s let, apply, also, with and run functions](https://proandroiddev.com/the-tldr-on-kotlins-let-apply-also-with-and-run-functions-6253f06d152b)
+
+* [Kotlin: Don’t just use LET for null check](https://medium.com/@elye.project/kotlin-dont-just-use-let-7e91f544e27f)
+
+* [examining-kotlins-also-apply-let-run-and-with-intentions](https://dzone.com/articles/examining-kotlins-also-apply-let-run-and-with-intentions)
