@@ -19,37 +19,39 @@ repository 최상위 폴더에서 `.github/workflows` 생성
 
 * YAML 사용
 
-#### 제한 사항
+### 제한 사항
 
 * 각 repo 당 20개를 동시에 실행할 수 있음
 * 시간당 1000개의 API 요청만 가능
 * workflow의 각 job은 최대 6시간까지 실행 가능
 * 모든 workflow는 repo 당 최대 20개의 작업을 동시에 실행 가능
 
-## `name`
+## 항목별 설명
+
+### `name`
 
 workflow의 이름. 설정한 이름이 repo actions 페이지에 표시됨.
 생략 시 workflow의 파일명으로 설정
 
-## `on` **[required]**
+### `on` **[required]**
 
 workflow를 실행시킬 이벤트 이름. 이벤트 (`string` 또는 `array`
 
-##### 단일 이벤트 예시
+#### 단일 이벤트 예시
 
 ``` yaml
 # 푸시 이벤트 발생 시 실행
 on: push
 ```
 
-##### 다중 이벤트 예시
+#### 다중 이벤트 예시
 
 ``` yaml
 # 푸시 또는 풀리퀘 이벤트 발생 시 실행
 on: [push, pull_request]
 ```
 
-##### 이벤트별 workflow 실행 제한
+#### 이벤트별 workflow 실행 제한
 
 ``` haml
 # 기본적으로 전체를 실행하며, 아래와 같이 선택적으로 설정할 수 있음
@@ -68,7 +70,7 @@ pull_request:
     - 'js/*'
 ```
 
-##### 스케줄 실행 (cron)
+#### 스케줄 실행 (cron)
 
 ``` yaml
 Example scheduling workflows using cron syntax
@@ -79,7 +81,7 @@ on:
     - cron:  '*/15 * * * *'
 ```
 
-## `jobs`
+### `jobs`
 
 workflow는 1개 이상의 jobs을 만들 수 있음.
 기본적으로 병렬 실행됨. 순차적으로 실행하려면 `jobs.<job_id>.needs` 키워드를 사용해 다른 작업과 의존성 설정 필요
@@ -144,7 +146,7 @@ Available virtual machine types are:
 runs-on: ubuntu-18.04
 ```
 
-
+------------
 
 
 # 참고
