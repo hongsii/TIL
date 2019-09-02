@@ -3,7 +3,6 @@
 Thrift 0.11 버전을 설치해야하는데 `brew` 는 0.9 / 0.12 두 가지 버전만 지원함.
 
 * 설치 순서는 [Apache Thrift OS X Setup](https://thrift.apache.org/docs/install/os_x)에서 따라 진행
-
 * Thrift build 전 bison 버전이 낮아서 실행이 안되기 때문에 bison 설치
 
 ``` shell
@@ -12,7 +11,7 @@ brew link bison --force
 ```
 
 * Thrift build가 끝나면 `thrift -version` 으로 설치 확인
-* 그래도 빌드가 안된다면 openssl 을 설치해본다.
+* 그래도 빌드가 안된다면 openssl 을 설치하고 빌드한다.
 
 ``` shell
 brew install openssl
