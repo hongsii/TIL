@@ -31,7 +31,7 @@ $ sudo dd if=/dev/zero of=/swapfile bs=1G count=2
 
 * `if=FILE` : 표준입력 대신 지정된 파일을 읽기
 * `of=FILE` : 표준출력 대신 지정된 파일로 쓰기
-* `bs=BYTES` : 한 번에 읽고 쓸 수 있는 블록 크기
+* `bs=BYTES` : 한 번에 읽고 쓸 수 있는 블록 크기. 기본 단위는 bytes이며, K/M/G 문자로 단위 설정 가능 ex) 1G, 512M
 * `count=N` : 입력 할 수 있는 블록 수 
 * `/dev/zero` : 유닉스에서 읽기를 위해 제공하는 널 문자 특수 파일
 
