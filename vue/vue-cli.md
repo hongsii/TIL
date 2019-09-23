@@ -36,6 +36,40 @@ $ npm install -g @vue/cli
 
 ## 사용법
 
+### Vue 프로젝트 생성
+
+프로젝트 생성 방법은 2가지가 존재
+
+1. CLI
+2. GUI
+
+#### CLI
+
+`create` 옵션으로 프로젝트를 생성할 수 있음
+
+``` shell
+# 새로운 디렉토리에 프로젝트 생성
+$ vue create 프로젝트명
+
+# 또는 이미 존재하는 디렉토리로 이동해 생성하는 방법
+$ vue create .
+```
+
+명령어를 입력하면 아래와 같은 설정 화면 표시
+
+``` shell
+Vue CLI v3.11.0
+? Please pick a preset: (Use arrow keys)
+❯ default (babel, eslint)
+  Manually select features
+```
+
+#### GUI
+
+``` shell
+$ vue ui
+```
+
 
 ---
 
