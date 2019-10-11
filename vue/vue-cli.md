@@ -64,6 +64,12 @@ Vue CLI v3.11.0
   Manually select features
 ```
 
+프로젝트의 의존성 관리를 yarn으로 하고 싶다면 미리 설치 필요
+
+``` shell
+npm install -g yarn
+```
+
 #### GUI
 
 로컬 웹을 통해 프로젝트를 생성할 수 있음
